@@ -19,6 +19,7 @@ public class BMI {
 
     Scanner scanner;
 
+
     public static void main(String[] args) {
         BMI bmi = new BMI();
     }
@@ -29,6 +30,9 @@ public class BMI {
     }
 
     public void init() {
+
+        System.out.println(Util.getAuthorName());
+
         double h1;
         double h2;
         double w1;
@@ -92,6 +96,15 @@ public class BMI {
         }
 
 
+    }
+
+    public void singleSpace() {
+        System.out.println();
+    }
+
+    public void doubleSpace() {
+        System.out.println();
+        System.out.println();
     }
 
 }
