@@ -15,7 +15,6 @@ public class NestedFor {
 
             for (int j = 1; j <= 5; j++) {
 
-
                 if ((j == (-1 * i + 6))) {
                     System.out.print(i);
 
@@ -23,10 +22,6 @@ public class NestedFor {
                     System.out.print(".");
                 }
 
-
-                //Print dots equal to however many
-                //then print the number
-                //then print remaining dots
             }
 
 
