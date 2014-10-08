@@ -24,7 +24,7 @@ public class CountingGame {
 
             for (int i = 1; i <= numToUse; i++) {
 
-                int tmp = r.nextInt(101);
+                int tmp = r.nextInt(100) + 1;
 
                 if (i == numToUse) {
                     System.out.print(tmp + " = ");
