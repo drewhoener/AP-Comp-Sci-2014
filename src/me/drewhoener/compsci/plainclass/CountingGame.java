@@ -20,7 +20,7 @@ public class CountingGame {
         while (wrongAnswers < 3) {
             int correctSum = 0;
 
-            int numToUse = r.nextInt(3) + 2;
+            int numToUse = r.nextInt(4) + 2;
 
             for (int i = 1; i <= numToUse; i++) {
 
