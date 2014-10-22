@@ -1,5 +1,6 @@
 package me.drewhoener.compsci.plainclass;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class BinderCheckMethods {
@@ -7,7 +8,8 @@ public class BinderCheckMethods {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        longestName(scanner, 7);
+        //longestName(scanner, 7);
+        //threeHeads();
 
     }
 
@@ -56,6 +58,59 @@ public class BinderCheckMethods {
 
         System.out.println("The longest name is: " + strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase());
 
+
+    }
+
+
+    public static void threeHeads() {
+
+        System.out.println();
+        Random r = new Random();
+
+        String[] strings = new String[3];
+
+        for (int i = 0; i < 3; i++) {
+
+            int temp = r.nextInt(2);
+
+            if (temp == 0) {
+                strings[i] = "T";
+
+            } else {
+                strings[i] = "H";
+
+            }
+
+        }
+
+        System.out.print(strings[0] + " ");
+        System.out.print(strings[1] + " ");
+        System.out.print(strings[2] + " ");
+
+        while (!(strings[0].equalsIgnoreCase("H") && strings[1].equalsIgnoreCase("H") && strings[2].equalsIgnoreCase("H"))) {
+
+            strings[0] = strings[1];
+            strings[1] = strings[2];
+
+            int temp = r.nextInt(2);
+
+            if (temp == 0) {
+
+                strings[2] = "T";
+
+            } else {
+
+                strings[2] = "H";
+
+            }
+
+            System.out.print(strings[2] + " ");
+
+
+        }
+
+        System.out.println();
+        System.out.println("Three Heads in a row!");
 
     }
 
