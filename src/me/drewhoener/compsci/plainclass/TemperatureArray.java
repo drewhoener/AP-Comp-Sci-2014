@@ -62,6 +62,7 @@ public class TemperatureArray {
         System.out.println();
 
         System.out.println("Two Hottest Days: " + temperatures[temperatures.length - 1] + ", " + temperatures[temperatures.length - 2]);
+        System.out.println("Two Coldest Days: " + temperatures[0] + ", " + temperatures[1]);
 
 
     }
