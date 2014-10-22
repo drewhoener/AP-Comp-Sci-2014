@@ -11,6 +11,14 @@ public class BinderCheckMethods {
         //longestName(scanner, 7);
         //threeHeads();
 
+        System.out.println(graduation(3.87, 178, 16));
+        System.out.println(graduation(1.5, 199, 30));
+        System.out.println(graduation(2.7, 380, 50));
+        System.out.println(graduation(3.6, 180, 14));
+        System.out.println(graduation(3.62, 200, 20));
+        System.out.println(graduation(3.93, 185, 0));
+        System.out.println(graduation(3.85, 190, 15));
+
     }
 
     public static void longestName(Scanner scanner, int number) {
@@ -57,6 +65,9 @@ public class BinderCheckMethods {
         }
 
         System.out.println("The longest name is: " + strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase());
+        if (stringLoc.length > 1) {
+            System.out.println("With a tie.");
+        }
 
 
     }
@@ -111,6 +122,62 @@ public class BinderCheckMethods {
 
         System.out.println();
         System.out.println("Three Heads in a row!");
+
+    }
+
+
+    //Might be a little redundant
+    public static String graduation(double GPA, int totalCredit, int honorCredit) {
+
+        if (GPA >= 2.0 && totalCredit >= 180) {
+
+            if (GPA >= 3.6 && GPA < 3.8) {
+
+                if (honorCredit < 15 && honorCredit >= 0) {
+
+                    return "Graduating cum laude";
+
+                } else {
+
+                    return "Graduating magna cum laude";
+
+                }
+
+            }
+
+            if (GPA >= 3.6 && GPA < 3.8) {
+
+                if (honorCredit >= 15) {
+
+                    return "Graduating magna cum laude";
+
+                }
+
+            }
+
+
+            if (GPA >= 3.8) {
+
+                if (honorCredit >= 15) {
+
+                    return "Graduating summa cum laude";
+
+                } else {
+
+                    return "Graduating magna cum laude";
+
+                }
+
+            }
+
+            return "Graduating";
+
+
+        } else {
+
+            return "Not Graduating";
+
+        }
 
     }
 
