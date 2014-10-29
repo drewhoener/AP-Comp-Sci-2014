@@ -63,8 +63,8 @@ public class BinderCheckMethods {
 
 
         }
-
-        System.out.println("The longest name is: " + strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase());
+        String longest = strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase();
+        System.out.println("The longest name is: " + longest);
         if (stringLoc.length > 1) {
             System.out.println("With a tie.");
         }
