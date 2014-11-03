@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BinderCheckMethods {
+public class SpecialStaticMethods {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
