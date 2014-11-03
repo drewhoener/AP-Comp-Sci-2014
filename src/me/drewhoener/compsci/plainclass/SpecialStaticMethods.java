@@ -1,9 +1,14 @@
 package me.drewhoener.compsci.plainclass;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BinderCheckMethods {
+public class SpecialStaticMethods {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -11,13 +16,30 @@ public class BinderCheckMethods {
         //longestName(scanner, 7);
         //threeHeads();
 
-        System.out.println(graduation(3.87, 178, 16));
+        /*System.out.println(graduation(3.87, 178, 16));
         System.out.println(graduation(1.5, 199, 30));
         System.out.println(graduation(2.7, 380, 50));
         System.out.println(graduation(3.6, 180, 14));
         System.out.println(graduation(3.62, 200, 20));
         System.out.println(graduation(3.93, 185, 0));
-        System.out.println(graduation(3.85, 190, 15));
+        System.out.println(graduation(3.85, 190, 15));*/
+
+	    //System.out.println(evenDigits(8546587));
+
+	   /* System.out.println(timeForLunch(11, 00, 11, 59));
+
+	    System.out.println(timeForLunch(12, 30, 13, 00));
+
+	    System.out.println(timeForLunch(12, 30, 13, 15));
+
+	    System.out.println(timeForLunch(14, 20, 17, 02));
+
+	    System.out.println(timeForLunch(12, 30, 9, 30));
+
+	    System.out.println(timeForLunch(12, 00, 11, 55));*/
+
+	    randomRects();
+
 
     }
 
@@ -63,7 +85,8 @@ public class BinderCheckMethods {
 
 
         }
-        String longest = strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase();
+
+	    String longest = strings[stringLoc[0]].substring(0, 1).toUpperCase() + strings[stringLoc[0]].substring(1).toLowerCase();
         System.out.println("The longest name is: " + longest);
         if (stringLoc.length > 1) {
             System.out.println("With a tie.");
@@ -180,5 +203,94 @@ public class BinderCheckMethods {
         }
 
     }
+
+	public static int evenDigits(int num) {
+		int returnNum = 0;
+		int digits = 1 + (int) Math.floor(Math.log10(num));
+		for (int i = 0; i < digits; i++) {
+
+			if ((num % 10) % 2 == 0) {
+				returnNum++;
+			}
+
+			num /= 10;
+		}
+
+		return returnNum;
+
+	}
+
+	public static boolean timeForLunch(int h1, int m1, int h2, int m2) {
+
+		DateFormat format = new SimpleDateFormat("HH:mm");
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date1 = format.parse("" + h1 + ":" + m1);
+			date2 = format.parse("" + h2 + ":" + m2);
+
+		} catch (ParseException e) {
+			System.out.println("error parsing dates");
+			e.printStackTrace();
+		}
+
+		if ((date1 != null && date2 != null) && (2700000 <= (date2.getTime() - date1.getTime()))) {
+			return true;
+		}
+
+		return false;
+
+	}
+
+	public static void randomRects() {
+
+		ArrayList<int[]> rects = new ArrayList<int[]>(4);
+
+		rects.add(newRect());
+		rects.add(newRect());
+		rects.add(newRect());
+		rects.add(newRect());
+
+		System.out.println("h: " + rects.get(0)[0] + " w: " + rects.get(0)[1] + " area: " + rects.get(0)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(1)[0] + " w: " + rects.get(1)[1] + " area: " + rects.get(1)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(2)[0] + " w: " + rects.get(2)[1] + " area: " + rects.get(2)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(3)[0] + " w: " + rects.get(3)[1] + " area: " + rects.get(3)[2]);
+		System.out.println();
+
+		while (!((rects.get(0)[2] < rects.get(1)[2]) && (rects.get(1)[2] < rects.get(2)[2]) && (rects.get(2)[2] < rects.get(3)[2]))) {
+			rects.set(0, rects.get(1));
+			rects.set(1, rects.get(2));
+			rects.set(2, rects.get(3));
+			rects.set(3, newRect());
+
+			System.out.println("h: " + rects.get(0)[0] + " w: " + rects.get(0)[1] + " area: " + rects.get(0)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(1)[0] + " w: " + rects.get(1)[1] + " area: " + rects.get(1)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(2)[0] + " w: " + rects.get(2)[1] + " area: " + rects.get(2)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(3)[0] + " w: " + rects.get(3)[1] + " area: " + rects.get(3)[2]);
+			System.out.println();
+
+
+		}
+
+		System.out.println("4 Ascending areas");
+
+
+	}
+
+	public static int[] newRect() {
+
+		Random r = new Random();
+		int height = (r.nextInt(10) + 1);
+		int width = (r.nextInt(10) + 1);
+
+		return new int[]{height, width, height * width};
+
+	}
 
 }
