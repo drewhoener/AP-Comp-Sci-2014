@@ -3,6 +3,7 @@ package me.drewhoener.compsci.plainclass;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class SpecialStaticMethods {
 
 	    //System.out.println(evenDigits(8546587));
 
-	    System.out.println(timeForLunch(11, 00, 11, 59));
+	   /* System.out.println(timeForLunch(11, 00, 11, 59));
 
 	    System.out.println(timeForLunch(12, 30, 13, 00));
 
@@ -35,7 +36,9 @@ public class SpecialStaticMethods {
 
 	    System.out.println(timeForLunch(12, 30, 9, 30));
 
-	    System.out.println(timeForLunch(12, 00, 11, 55));
+	    System.out.println(timeForLunch(12, 00, 11, 55));*/
+
+	    randomRects();
 
 
     }
@@ -241,6 +244,52 @@ public class SpecialStaticMethods {
 
 	public static void randomRects() {
 
+		ArrayList<int[]> rects = new ArrayList<int[]>(4);
+
+		rects.add(newRect());
+		rects.add(newRect());
+		rects.add(newRect());
+		rects.add(newRect());
+
+		System.out.println("h: " + rects.get(0)[0] + " w: " + rects.get(0)[1] + " area: " + rects.get(0)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(1)[0] + " w: " + rects.get(1)[1] + " area: " + rects.get(1)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(2)[0] + " w: " + rects.get(2)[1] + " area: " + rects.get(2)[2]);
+		System.out.println();
+		System.out.println("h: " + rects.get(3)[0] + " w: " + rects.get(3)[1] + " area: " + rects.get(3)[2]);
+		System.out.println();
+
+		while (!((rects.get(0)[2] < rects.get(1)[2]) && (rects.get(1)[2] < rects.get(2)[2]) && (rects.get(2)[2] < rects.get(3)[2]))) {
+			rects.set(0, rects.get(1));
+			rects.set(1, rects.get(2));
+			rects.set(2, rects.get(3));
+			rects.set(3, newRect());
+
+			System.out.println("h: " + rects.get(0)[0] + " w: " + rects.get(0)[1] + " area: " + rects.get(0)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(1)[0] + " w: " + rects.get(1)[1] + " area: " + rects.get(1)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(2)[0] + " w: " + rects.get(2)[1] + " area: " + rects.get(2)[2]);
+			System.out.println();
+			System.out.println("h: " + rects.get(3)[0] + " w: " + rects.get(3)[1] + " area: " + rects.get(3)[2]);
+			System.out.println();
+
+
+		}
+
+		System.out.println("4 Ascending areas");
+
+
+	}
+
+	public static int[] newRect() {
+
+		Random r = new Random();
+		int height = (r.nextInt(10) + 1);
+		int width = (r.nextInt(10) + 1);
+
+		return new int[]{height, width, height * width};
 
 	}
 
