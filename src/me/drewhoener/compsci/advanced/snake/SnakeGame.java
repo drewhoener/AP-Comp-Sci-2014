@@ -27,7 +27,7 @@ public class SnakeGame extends JPanel {
 		this.setBackground(Color.BLACK);
 
 		try {
-			BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/resources/apple.png"));
+			BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/resources/appleTrans.png"));
 			snake1 = new Snake(new Point(14, 14), image, Color.ORANGE);
 			snake2 = new Snake(new Point(70, 70), image, Color.CYAN);
 
