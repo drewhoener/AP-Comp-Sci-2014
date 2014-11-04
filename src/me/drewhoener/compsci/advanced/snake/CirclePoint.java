@@ -60,7 +60,7 @@ public class CirclePoint {
 
 		if (this.image != null) {
 
-			g2d.drawImage(this.image, this.center.getX() - 5, this.center.getY() - 5, null);
+			g2d.drawImage(this.image, this.center.getX() - 3, this.center.getY() - 5, null);
 
 		}
 
