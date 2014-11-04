@@ -2,12 +2,14 @@ package me.drewhoener.compsci.advanced.snake;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 
 public class CirclePoint {
 
 	private Point center;
 	private Color color;
 	private int diameter = 10;
+	private BufferedImage image;
 
 	public CirclePoint() {
 		this(new Point(), Color.GREEN);
@@ -20,6 +22,14 @@ public class CirclePoint {
 	public CirclePoint(Point p, Color color) {
 		this.center = p;
 		this.color = color;
+		this.image = null;
+	}
+
+	public CirclePoint(Point p, BufferedImage image) {
+		this.center = p;
+		this.color = null;
+		this.image = image;
+
 	}
 
 	public void setCenter(Point center) {
@@ -40,14 +50,28 @@ public class CirclePoint {
 
 	public void drawPoint(Graphics2D g2d) {
 
-		Ellipse2D.Double circle = new Ellipse2D.Double(this.center.getX(), this.center.getY(), this.diameter, this.diameter);
-		g2d.setColor(this.color);
+		if (this.color != null) {
+			Ellipse2D.Double circle = new Ellipse2D.Double(this.center.getX(), this.center.getY(), this.diameter, this.diameter);
+			g2d.setColor(this.color);
 
-		g2d.fill(circle);
+			g2d.fill(circle);
+			return;
+		}
+
+		if (this.image != null) {
+
+			g2d.drawImage(this.image, this.center.getX() - 5, this.center.getY() - 5, null);
+
+		}
 
 	}
 
 	public CirclePoint translatePoint(Point p) {
+
+
+		if (this.image != null) {
+			return new CirclePoint(new Point(this.center.getX() + p.getX(), this.center.getY() + p.getY()), this.image);
+		}
 
 		return new CirclePoint(new Point(this.center.getX() + p.getX(), this.center.getY() + p.getY()), this.color);
 

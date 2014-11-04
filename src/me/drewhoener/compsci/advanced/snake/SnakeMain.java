@@ -7,35 +7,33 @@ public class SnakeMain {
 
 	public static void main(String[] args) {
 
-		Runnable r = new Runnable() {
-			@Override
-			public void run() {
+		Runnable r = () -> {
 
-				JFrame mainFrame = new JFrame();
+			JFrame mainFrame = new JFrame();
 
-				SnakeGame game = new SnakeGame();
-				mainFrame.add(game);
+			SnakeGame game = new SnakeGame();
+			mainFrame.add(game);
 
-				game.addKeyListener(game.mainListener);
+			game.addKeyListener(game.mainListener);
 
-				game.setFocusable(true);
-				game.requestFocusInWindow();
+			game.setFocusable(true);
+			game.requestFocusInWindow();
 
-				mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				mainFrame.pack();
-				mainFrame.setTitle("Snake (Swing Version)");
-				mainFrame.setResizable(false);
-				mainFrame.setLocationRelativeTo(null);
-				mainFrame.setVisible(true);
+			mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			mainFrame.pack();
+			mainFrame.setTitle("Snake (Swing Version)");
+			mainFrame.setResizable(false);
+			mainFrame.setLocationRelativeTo(null);
+			mainFrame.setVisible(true);
 
-				int delay = 200; //milliseconds
+			int delay = 200; //milliseconds
 
-				ActionListener taskPerformer = evt -> game.repaint();
-
-				new Timer(delay, taskPerformer).start();
+			ActionListener taskPerformer = evt -> game.repaint();
 
 
-			}
+			new Timer(delay, taskPerformer).start();
+
+
 		};
 
 		SwingUtilities.invokeLater(r);

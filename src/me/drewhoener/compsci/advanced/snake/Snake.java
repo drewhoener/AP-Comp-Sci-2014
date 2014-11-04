@@ -1,6 +1,7 @@
 package me.drewhoener.compsci.advanced.snake;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +11,35 @@ public class Snake {
 	private List<CirclePoint> pointList = new ArrayList<>();
 	private Direction curDirection;
 	private boolean canPlay = true;
+	private Color headColor;
+	private Color bodyColor;
+	private BufferedImage image = null;
 
 	public Snake() {
 		this(new Point());
 	}
 
 	public Snake(Point p) {
+
+		this(p, Color.RED, Color.GREEN);
+
+	}
+
+	public Snake(Point p, Color headColor, Color bodyColor) {
+		this.headColor = headColor;
+		this.bodyColor = bodyColor;
 		pointList.clear();
-		CirclePoint head = new CirclePoint(p, Color.RED);
+		CirclePoint head = new CirclePoint(p, this.headColor);
+		pointList.add(head);
+		this.length = 1;
+		this.curDirection = Direction.RIGHT;
+	}
+
+	public Snake(Point p, BufferedImage image, Color bodyColor) {
+		this.image = image;
+		this.bodyColor = bodyColor;
+		pointList.clear();
+		CirclePoint head = new CirclePoint(p, this.image);
 		pointList.add(head);
 		this.length = 1;
 		this.curDirection = Direction.RIGHT;
@@ -36,22 +58,21 @@ public class Snake {
 			if (this.pointList.size() > 1) {
 
 				tempPoint = this.pointList.get(1);
-				tempPoint.setColor(Color.GREEN);
-				this.pointList.set(1, new CirclePoint(this.pointList.get(0).getCenter(), Color.GREEN));
+				tempPoint.setColor(this.bodyColor);
+				this.pointList.set(1, new CirclePoint(this.pointList.get(0).getCenter(), this.bodyColor));
 
 				for (int i = 2; i < this.pointList.size(); i++) {
 					CirclePoint temp2 = this.pointList.get(i);
 					this.pointList.set(i, tempPoint);
 					tempPoint = temp2;
-					tempPoint.setColor(Color.GREEN);
+					tempPoint.setColor(this.bodyColor);
 
-					this.pointList.get(i).setColor(Color.GREEN);
+					this.pointList.get(i).setColor(this.bodyColor);
 
 				}
 			}
 
 			CirclePoint first = this.pointList.get(0).translatePoint(this.curDirection.getMovement());
-			first.setColor(Color.RED);
 
 			this.pointList.set(0, first);
 		}
@@ -80,7 +101,27 @@ public class Snake {
 
 		}
 
+		for (int i = 1; i < this.pointList.size(); i++) {
+
+			if (this.getHead().getX() == this.pointList.get(i).getCenter().getX() && this.getHead().getY() == this.pointList.get(i).getCenter().getY()) {
+				this.canPlay = false;
+			}
+
+		}
+
 		return false;
+
+	}
+
+	public void crashWithOther(List<CirclePoint> pointsOther) {
+
+		for (int i = 0; i < pointsOther.size(); i++) {
+
+			if (this.getHead().getX() == pointsOther.get(i).getCenter().getX() && this.getHead().getY() == pointsOther.get(i).getCenter().getY()) {
+				this.canPlay = false;
+			}
+
+		}
 
 	}
 
@@ -136,7 +177,7 @@ public class Snake {
 		for (CirclePoint cp : this.pointList) {
 
 			cp.drawPoint(graphics2D);
-			System.out.println("Drawing: " + cp.toString());
+			System.out.println("Drawing: " + cp.getCenter().toString());
 
 		}
 
@@ -155,6 +196,14 @@ public class Snake {
 			return Direction.LEFT;
 		}
 
+
+	}
+
+	public boolean isWithinLimits() {
+
+		//System.out.println("" + this.snake1.getTrueEdge().getX() + " : " + (WIDTH - 20));
+
+		return (this.getTrueEdge().getX() <= SnakeGame.WIDTH - 14) && (this.getTrueEdge().getX() >= 14) && (this.getTrueEdge().getY() <= SnakeGame.HEIGHT - 14) && (this.getTrueEdge().getY() >= 14);
 
 	}
 
