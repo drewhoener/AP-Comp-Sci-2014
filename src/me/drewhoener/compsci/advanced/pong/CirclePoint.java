@@ -1,4 +1,4 @@
-package me.drewhoener.compsci.advanced.snake;
+package me.drewhoener.compsci.advanced.pong;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -10,9 +10,6 @@ public class CirclePoint {
 	private Color color;
 	private int diameter = 10;
 	private BufferedImage image;
-
-	private Direction curDir;
-	private Direction lastDir;
 
 	public CirclePoint() {
 		this(new Point(), Color.GREEN);
@@ -33,22 +30,6 @@ public class CirclePoint {
 		this.color = null;
 		this.image = image;
 
-	}
-
-	public void setCurDir(Direction curDir) {
-		this.curDir = curDir;
-	}
-
-	public void setLastDir(Direction lastDir) {
-		this.lastDir = lastDir;
-	}
-
-	public Direction getCurDir() {
-		return curDir;
-	}
-
-	public Direction getLastDir() {
-		return lastDir;
 	}
 
 	public void setCenter(Point center) {
@@ -89,22 +70,10 @@ public class CirclePoint {
 
 
 		if (this.image != null) {
-			return new CirclePoint(new Point(this.center.getX() + (p.getX() * 7), this.center.getY() + (p.getY() * 7)), this.image);
+			return new CirclePoint(new Point(this.center.getX() + p.getX(), this.center.getY() + p.getY()), this.image);
 		}
 
-		return new CirclePoint(new Point(this.center.getX() + (p.getX() * 7), this.center.getY() + (p.getY() * 7)), this.color);
+		return new CirclePoint(new Point(this.center.getX() + p.getX(), this.center.getY() + p.getY()), this.color);
 
 	}
-
-	public CirclePoint translatePointNormal(Point p) {
-
-
-		if (this.image != null) {
-			return new CirclePoint(new Point(this.center.getX() + (p.getX()), this.center.getY() + p.getY()), this.image);
-		}
-
-		return new CirclePoint(new Point(this.center.getX() + (p.getX()), this.center.getY() + (p.getY())), this.color);
-
-	}
-
 }

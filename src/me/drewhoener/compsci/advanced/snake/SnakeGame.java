@@ -25,20 +25,16 @@ public class SnakeGame extends JPanel {
 		this.gameThread = new Thread();
 		this.setPreferredSize(new Dimension(WIDTH - 5, HEIGHT - 5));
 		this.setBackground(Color.BLACK);
+			snake1 = new Snake(new Point(14, 14));
+		//snake2 = new Snake(new Point(70, 70), Color.BLUE, Color.CYAN);
 
 		try {
 			BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("/resources/appleTrans.png"));
-			snake1 = new Snake(new Point(14, 14), image, Color.ORANGE);
-			snake2 = new Snake(new Point(70, 70), image, Color.CYAN);
-
+			randomPoint = new CirclePoint(Point.randomPoint(1, 49, 1, 49), image);
 		} catch (IOException e) {
-
-			snake1 = new Snake(new Point(14, 14));
-			snake2 = new Snake(new Point(70, 70), Color.BLUE, Color.CYAN);
-
+			randomPoint = new CirclePoint(Point.randomPoint(1, 49, 1, 49), Color.GREEN);
 		}
 
-		randomPoint = new CirclePoint(Point.randomPoint(1, 49, 1, 49), Color.GREEN);
 		this.gameThread.start();
 
 	}
@@ -77,7 +73,7 @@ public class SnakeGame extends JPanel {
 
 			}
 
-			if (e.getKeyCode() != snake2.getCurDirection().getP2key() && e.getKeyCode() != snake2.getCurDirection().getP2Opposite()) {
+			/*if (e.getKeyCode() != snake2.getCurDirection().getP2key() && e.getKeyCode() != snake2.getCurDirection().getP2Opposite()) {
 
 				if (e.getKeyCode() == KeyEvent.VK_W) {
 
@@ -97,7 +93,7 @@ public class SnakeGame extends JPanel {
 
 				}
 
-			}
+			}*/
 
 		}
 
@@ -131,7 +127,7 @@ public class SnakeGame extends JPanel {
 					randomPoint.setCenter(Point.randomPoint(1, 49, 1, 49));
 				}
 
-				this.snake1.crashWithOther(this.snake2.getPointList());
+				//this.snake1.crashWithOther(this.snake2.getPointList());
 
 			} else {
 				this.snake1.setCanPlay(false);
@@ -139,7 +135,7 @@ public class SnakeGame extends JPanel {
 				//Write Game Over Screen
 			}
 
-			if (this.snake2.isWithinLimits() && this.snake2.canPlay()) {
+			/*if (this.snake2.isWithinLimits() && this.snake2.canPlay()) {
 
 				this.snake2.updateMovement();
 				this.snake2.drawPoints(graphics);
@@ -154,9 +150,9 @@ public class SnakeGame extends JPanel {
 				this.snake2.setCanPlay(false);
 				this.snake2.setColorAll(graphics, Color.BLUE);
 				//Write Game Over Screen
-			}
+			}*/
 
-			if (!this.snake1.canPlay() && !this.snake2.canPlay()) {
+			if (!this.snake1.canPlay() /*&& !this.snake2.canPlay()*/) {
 				this.running = false;
 			}
 

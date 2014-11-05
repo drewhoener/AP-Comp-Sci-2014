@@ -26,7 +26,7 @@ public class SnakeMain {
 			mainFrame.setLocationRelativeTo(null);
 			mainFrame.setVisible(true);
 
-			int delay = 200; //milliseconds
+			int delay = 20; //milliseconds
 
 			ActionListener taskPerformer = evt -> game.repaint();
 

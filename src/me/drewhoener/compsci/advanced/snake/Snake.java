@@ -57,6 +57,23 @@ public class Snake {
 
 			if (this.pointList.size() > 1) {
 
+
+				if (this.pointList.get(0).getCurDir() == null || (this.pointList.get(0).getCurDir() == null && this.pointList.get(0).getLastDir() == null)) {
+
+				}
+
+				tempPoint = this.pointList.get(1);
+				tempPoint.setColor(this.bodyColor);
+				this.pointList.set(1, this.pointList.get(1).translatePointNormal(Direction.getAdjacentPoint(this.pointList.get(0), this.pointList.get(1)).getMovement()));
+				if (this.pointList.size() > 2) {
+					for (int i = 2; i < this.pointList.size(); i++) {
+						CirclePoint temp2 = this.pointList.get(i);
+						this.pointList.set(i, this.pointList.get(i).translatePointNormal(Direction.getAdjacentPoint(tempPoint, this.pointList.get(i)).getMovement()));
+						tempPoint = temp2;
+
+					}
+				}
+/*
 				tempPoint = this.pointList.get(1);
 				tempPoint.setColor(this.bodyColor);
 				this.pointList.set(1, new CirclePoint(this.pointList.get(0).getCenter(), this.bodyColor));
@@ -69,10 +86,10 @@ public class Snake {
 
 					this.pointList.get(i).setColor(this.bodyColor);
 
-				}
+				}*/
 			}
 
-			CirclePoint first = this.pointList.get(0).translatePoint(this.curDirection.getMovement());
+			CirclePoint first = this.pointList.get(0).translatePointNormal(this.curDirection.getMovement());
 
 			this.pointList.set(0, first);
 		}
@@ -91,11 +108,12 @@ public class Snake {
 
 	public boolean interact(CirclePoint cp) {
 
-		if (cp.getCenter().getX() == this.getHead().getX() && cp.getCenter().getY() == this.getHead().getY()) {
+		if (Math.abs(cp.getCenter().getX() - this.getHead().getX()) <= 5 && Math.abs(cp.getCenter().getY() - this.getHead().getY()) <= 5) {
 
 
 			System.out.println("add the point?");
-			this.pointList.add(this.pointList.get(this.pointList.size() - 1).translatePoint(getOptimalCoords().getMovement()));
+			this.pointList.add(this.pointList.get(this.pointList.size() - 1).translatePointNormal(new Point(getOptimalCoords().getNormalMovement().getX(), getOptimalCoords().getNormalMovement().getY())));
+			System.out.println("New Point Center: " + this.pointList.get(this.pointList.size() - 1).getCenter().toString());
 			System.out.println(this.pointList.size());
 			return true;
 
