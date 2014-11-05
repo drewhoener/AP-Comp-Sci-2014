@@ -27,7 +27,7 @@ public class RandomRects {
             System.out.println("last4Heights:\t"+Arrays.toString(last4Heights));
             System.out.println("Last4Widths:\t"+ Arrays.toString(last4Widths));
         }
-        System.out.println("Last 4 Hights:\t"+ Arrays.toString(last4Heights));
+        System.out.println("Last 4 Heights:\t"+ Arrays.toString(last4Heights));
         System.out.println("Last 4 Widths:\t"+ Arrays.toString(last4Widths));
     }
 
