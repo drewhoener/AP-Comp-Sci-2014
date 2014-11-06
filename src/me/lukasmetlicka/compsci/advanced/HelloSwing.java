@@ -13,11 +13,9 @@ public class HelloSwing {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200,1200);
         JButton b = new JButton("Click!");
-        frame.setVisible(true);
-        b.setVisible(true);
-        //frame.add(b);
+        frame.add(b);
         frame.setBackground(Color.black);
-
+        frame.setVisible(true);
 
 
     }
