@@ -56,18 +56,22 @@ public class SnakeGame extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 
 					snake1.setCurDirection(Direction.UP);
+					snake1.getPointList().get(0).updateDir(snake1.getCurDirection());
 
 				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
 					snake1.setCurDirection(Direction.DOWN);
+					snake1.getPointList().get(0).updateDir(snake1.getCurDirection());
 
 				} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
 					snake1.setCurDirection(Direction.LEFT);
+					snake1.getPointList().get(0).updateDir(snake1.getCurDirection());
 
 				} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
 					snake1.setCurDirection(Direction.RIGHT);
+					snake1.getPointList().get(0).updateDir(snake1.getCurDirection());
 
 				}
 

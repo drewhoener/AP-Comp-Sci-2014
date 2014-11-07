@@ -67,4 +67,24 @@ public enum Direction {
 
 	}
 
+	public static Direction actualOpposite(Direction primary) {
+
+		switch (primary) {
+
+			case DOWN:
+				return UP;
+			case UP:
+				return DOWN;
+			case LEFT:
+				return RIGHT;
+			case RIGHT:
+				return LEFT;
+			default:
+				return UP;
+
+
+		}
+
+	}
+
 }

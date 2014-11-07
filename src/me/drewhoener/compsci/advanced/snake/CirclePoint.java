@@ -85,26 +85,64 @@ public class CirclePoint {
 
 	}
 
-	public CirclePoint translatePoint(Point p) {
+	public void translatePoint(Point p) {
 
 
-		if (this.image != null) {
-			return new CirclePoint(new Point(this.center.getX() + (p.getX() * 7), this.center.getY() + (p.getY() * 7)), this.image);
-		}
+		this.center.setX(this.center.getX() + (p.getX() * 7));
+		this.center.setY(this.center.getY() + (p.getY() * 7));
 
-		return new CirclePoint(new Point(this.center.getX() + (p.getX() * 7), this.center.getY() + (p.getY() * 7)), this.color);
 
 	}
 
-	public CirclePoint translatePointNormal(Point p) {
+	public void translatePointNormal(Point p) {
 
+		if (this.color != Color.RED) {
 
-		if (this.image != null) {
-			return new CirclePoint(new Point(this.center.getX() + (p.getX()), this.center.getY() + p.getY()), this.image);
+			System.out.println("To Move: " + p.toString());
 		}
 
-		return new CirclePoint(new Point(this.center.getX() + (p.getX()), this.center.getY() + (p.getY())), this.color);
+		this.center.setX(this.center.getX() + p.getX());
+		this.center.setY(this.center.getY() + p.getY());
 
 	}
+
+	public Direction toMoveAdjacent(CirclePoint beforePoint) {
+
+		if (this.curDir == beforePoint.getCurDir()) {
+
+			System.out.println("Directions Equal");
+			System.out.println(this.curDir.toString());
+			System.out.println(beforePoint.curDir.toString());
+
+			return this.curDir;
+
+		} else {
+
+			if (this.center.getX() == beforePoint.getCenter().getX() || this.center.getY() == beforePoint.getCenter().getY()) {
+
+				System.out.println("Points on axis, making directions equal");
+
+				this.lastDir = this.curDir;
+				this.curDir = beforePoint.getCurDir();
+
+				return this.curDir;
+			} else {
+
+				System.out.println("Points not on axis, moving " + beforePoint.getLastDir().toString());
+
+				this.lastDir = this.curDir;
+				this.curDir = beforePoint.getLastDir();
+				return this.curDir;
+			}
+
+		}
+
+	}
+
+	public void updateDir(Direction dir) {
+		this.lastDir = this.curDir;
+		this.curDir = dir;
+	}
+
 
 }
