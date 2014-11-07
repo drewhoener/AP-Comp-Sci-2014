@@ -7,8 +7,7 @@ public class AddingGame {
   Random random = new Random();
   public int valueMaker(int a, int b){
     
-    int val = random.nextInt(b) + a;
-    return val;
+    return random.nextInt(b) + a;
     
   }
   
