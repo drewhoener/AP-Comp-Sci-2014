@@ -37,6 +37,9 @@ public class Student
     public String getName(){
         return name;
     }
+    public String toString(){
+        return "Name: "+name+"\tTest 1: "+Test1+"\tTest 2: "+Test2;
+    }
 
 }
 
