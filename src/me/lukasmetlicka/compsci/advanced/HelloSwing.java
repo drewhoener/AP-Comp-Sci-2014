@@ -18,6 +18,15 @@ public class HelloSwing {
         frame.setVisible(true);
 
 
+	    //Make Frame
+	    //Make Panel
+	    //Make button
+	    //set size of panel, colors, etc.
+	    //add button to panel
+	    //add panel to frame.
+	    //Don't set the background of the frame itself. Always change the panel background
+
+
     }
 
 }

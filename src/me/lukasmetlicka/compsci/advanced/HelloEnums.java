@@ -7,7 +7,8 @@ public class HelloEnums {
     public enum MaxsGender {
         MALE, FEMALE, NEUTRAL, ASEXUAL
     }
-    MaxsGender max = MaxsGender.NEUTRAL;
+
+	MaxsGender max = MaxsGender.NEUTRAL;
 
 }
 
