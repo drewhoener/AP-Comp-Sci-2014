@@ -38,7 +38,7 @@ public class Student
         return name;
     }
     public String toString(){
-        return "Name: "+name+"\tTest 1: "+Test1+"\tTest 2: "+Test2;
+        return "Name: "+ name +"\tTest 1: "+ Test1 +"\tTest 2: "+ Test2;
     }
 
 }
