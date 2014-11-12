@@ -5,4 +5,7 @@ package me.lukasmetlicka.compsci.plainclass;
  */
 public class Employee {
     private String name;
+    public void setName(String s){
+        name = s;
+    }
 }

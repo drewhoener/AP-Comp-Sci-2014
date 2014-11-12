@@ -6,9 +6,11 @@ package me.lukasmetlicka.compsci.plainclass;
 public class main {
     public static void main(String[] args){
 
-        Employee ed = new Lawyer();
+        Lawyer ed = new Lawyer();
+        ed.setval(5);
 
-        System.out.println(ed.toString());
+        System.out.println( ed.toString());
+        System.out.print(ed.getValue());
 
     }
 }

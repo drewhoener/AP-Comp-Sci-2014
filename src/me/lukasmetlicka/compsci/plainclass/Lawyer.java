@@ -7,4 +7,11 @@ public class Lawyer extends Employee {
     public String toString(){
         return "Lawyer";
     }
+    private int Value = 0;
+    public void setval(int i){
+        Value = i;
+    }
+    public int getValue(){
+        return Value;
+    }
 }
