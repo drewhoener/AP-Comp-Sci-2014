@@ -3,11 +3,11 @@ package me.lukasmetlicka.compsci.plainclass.Tickets;
 /**
  * Created by LukasMetlicka on 11/12/14.
  */
-public class StudentAdvance extends Ticket {
+public class StudentAdvanceTicket extends AdvanceTicket{
 
-    public StudentAdvance(int d, int n){
+    public StudentAdvanceTicket(int d, int n){
 
-        super(if (d > 10) return 15 if (d < 10) return 25, n);
+        super(d >=10 ? 15 : 25, n);
 
     }
 

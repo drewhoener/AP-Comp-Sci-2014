@@ -31,8 +31,8 @@ public class Ticket {
         return price;
     }
 
-    public void toString(){
-        System.out.println("number: "+ number + "\tprice: "+ price);
+    public String toString(){
+        return ("number: "+ number + "\tprice: "+ price);
     }
 
 }

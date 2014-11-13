@@ -7,7 +7,7 @@ public class WalkupTicket extends Ticket {
 
     public WalkupTicket(int n){
 
-        super.setPrice(n);
+        super(n, 50);
 
     }
 

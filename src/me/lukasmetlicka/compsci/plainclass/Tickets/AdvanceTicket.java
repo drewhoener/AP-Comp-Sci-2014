@@ -9,7 +9,7 @@ public class AdvanceTicket extends Ticket {
 
     public AdvanceTicket(int d, int n){
 
-        super(n, if (d > 10) return 20 if (d < 10) return 10);
+        super(n,d >= 10 ? 30 : 40);
 
 
     }
