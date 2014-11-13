@@ -6,10 +6,10 @@ package me.lukasmetlicka.compsci.plainclass.Tickets;
 public class main {
     public static void main(String[] args){
 
-        Ticket t1 = new Ticket(1,20);
-        AdvanceTicket t2 = new AdvanceTicket(15,1);
-        WalkupTicket t3 = new WalkupTicket(1);
-        StudentAdvanceTicket t4 = new StudentAdvanceTicket(15,1);
+        Ticket t1 = new Ticket(2,20);
+        AdvanceTicket t2 = new AdvanceTicket(15,2);
+        WalkupTicket t3 = new WalkupTicket(2);
+        StudentAdvanceTicket t4 = new StudentAdvanceTicket(15,2);
 
         System.out.println(t1.toString());
         System.out.println(t2.toString());

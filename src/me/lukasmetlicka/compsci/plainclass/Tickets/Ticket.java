@@ -11,7 +11,7 @@ public class Ticket {
     public Ticket( int number, int price ) {
 
         this.number = number;
-        this.price = price;
+        this.price = number*price;
 
     }
     public Ticket( int a ){
