@@ -10,4 +10,5 @@ public class Quadrilateral {
 		Point p4 = new Point(x4, y4);
 	}
 
+
 }
