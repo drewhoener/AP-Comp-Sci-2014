@@ -1,4 +1,4 @@
-package me.drewhoener.compsci.plainclass;
+package me.drewhoener.compsci.plainclass.ticket;
 
 public class StudentAdvanceTicket extends AdvanceTicket {
 

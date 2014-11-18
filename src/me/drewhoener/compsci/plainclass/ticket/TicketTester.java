@@ -1,4 +1,4 @@
-package me.drewhoener.compsci.plainclass;
+package me.drewhoener.compsci.plainclass.ticket;
 
 import java.util.ArrayList;
 import java.util.List;
