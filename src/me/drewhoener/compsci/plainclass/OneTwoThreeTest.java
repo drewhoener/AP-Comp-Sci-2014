@@ -60,6 +60,7 @@ public class OneTwoThreeTest {
 		System.out.println();
 		System.out.println();
 		var4.method1();
+		var4.method2();
 		System.out.println();
 		System.out.println();
 		var4.method2();
