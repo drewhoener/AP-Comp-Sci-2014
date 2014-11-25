@@ -2,53 +2,76 @@ package me.drewhoener.Euler;
 
 import me.drewhoener.compsci.plainclass.Primes;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ConsecPrimeSum {
 
-	boolean debug = true;
+	static boolean debug = true;
 
 	public static void main(String[] args) {
 		Primes primes = new Primes();
 		ConsecPrimeSum s = new ConsecPrimeSum();
+		ArrayList<Integer> list = new ArrayList<>();
 
 		//System.out.println(s.primeSumBelow(1000000));
-		List<Integer> list = primes.getPrimes(1000000);
+		//List<Integer> list = primes.getPrimes(1000000);
 
 		long num = 0;
-		long largestConsec = 0;
+		long largestConsec = 2;
 		boolean breakIt = false;
 
-		for (int i : list) {
+		for (int i = 3; i < 1000000; i++) {
 
-			System.out.println();
-			System.out.println("Num: " + num);
-			System.out.println("I: " + i);
 
-			long tmp = i + num;
+			if (isPrime(i)) {
+				largestConsec += i;
 
-			System.out.println("Tmp: " + tmp);
-			System.out.println();
-
-			if (primes.isPrime(num)) {
-
-				if (num < 1000000) {
-					largestConsec = num;
+				if (largestConsec > 1000000) {
+					break;
 				}
+
+
+				if (isPrime((int) largestConsec)) {
+					list.add((int) largestConsec);
+				}
+
 
 			}
 
-			if (breakIt) break;
-
-			num = tmp;
 
 		}
 
-		System.out.println(largestConsec);
+
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+
+		int largest = 0;
+
+		for (int i = 0; i < list.size(); i++) {
+
+			if (isPrime(list.get(i))) {
+				if (list.get(i) > largest) ;
+				largest = list.get(i);
+			}
+
+		}
+
+		System.out.println(largest);
+
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println(isPrime(958577));
 
 	}
 
-	public boolean isPrime(int num) {
+	public static boolean isPrime(int num) {
 
 		System.out.println("checking num " + num);
 
