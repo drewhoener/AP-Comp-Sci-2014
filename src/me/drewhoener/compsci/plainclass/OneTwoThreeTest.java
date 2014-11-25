@@ -6,6 +6,10 @@ class One {
 		System.out.println("One1");
 	}
 
+	public String toString() {
+		return "One";
+	}
+
 }
 
 class Two extends One {
@@ -14,13 +18,21 @@ class Two extends One {
 		System.out.println("Two3");
 	}
 
+	public String toString() {
+		return "Two";
+	}
+
 }
 
-class Three extends One {
+class Three extends Two {
 
 	public void method2() {
 		System.out.println("Three2");
 		method1();
+	}
+
+	public String toString() {
+		return "Three";
 	}
 
 }
@@ -36,53 +48,25 @@ class Four extends Three {
 		System.out.println("Four3");
 	}
 
+	public String toString() {
+		return "Four";
+	}
+
 }
 
 
 public class OneTwoThreeTest {
 
+	static One[] list = {new One(), new Two(), new Three(), new Four()};
 
-	static One var1 = new Two();
-	static One var2 = new Three();
-	static One var3 = new Four();
-	static Three var4 = new Four();
-	static Object var5 = new Three();
-	static Object var6 = new One();
 
 	public static void main(String[] args) {
-		var1.method1();
-		System.out.println();
-		System.out.println();
-		var2.method1();
-		System.out.println();
-		System.out.println();
-		var3.method1();
-		System.out.println();
-		System.out.println();
-		var4.method1();
-		var4.method2();
-		System.out.println();
-		System.out.println();
-		var4.method2();
-		System.out.println();
-		System.out.println();
 
-		((Two) var1).method3();
-		System.out.println();
-		System.out.println();
-		((Four) var3).method1();
-		System.out.println();
-		System.out.println();
-		((Four) var4).method3();
-		System.out.println();
-		System.out.println();
-		((One) var5).method1();
-		System.out.println();
-		System.out.println();
-		((Three) var5).method2();
-		System.out.println();
-		System.out.println();
-		((One) var6).method1();
+		for (int i = 0; i < list.length; i++) {
+			System.out.println(list[i].toString());
+			list[i].method1();
+		}
+
 
 
 	}
