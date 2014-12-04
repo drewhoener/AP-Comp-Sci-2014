@@ -1,4 +1,5 @@
-package me.drewhoener.compsci.plainclass.shapes;
+package me.lukasmetlicka.compsci.plainclass.Shapes;
+import java.lang.Math;
 
 public class Rectangle extends Quadrilateral implements IShape {
 
@@ -7,10 +8,10 @@ public class Rectangle extends Quadrilateral implements IShape {
 	}
 
 	public int returnWidth(){
-		return (int) Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+		return (int)Math.sqrt((p1.getX()-p2.getX())*(p1.getX()-p2.getX())+(p1.getY()-p2.getY())*(p1.getY()-p2.getY()));
 	}
 	public int returnLength(){
-		return (int) Math.sqrt((p1.getX() - p4.getX()) * (p1.getX() - p4.getX()) + (p1.getY() - p4.getY()) * (p1.getY() - p4.getY()));
+		return (int)Math.sqrt((p1.getX()-p4.getX())*(p1.getX()-p4.getX())+(p1.getY()-p4.getY())*(p1.getY()-p4.getY()));
 	}
 
 	public int getArea(){

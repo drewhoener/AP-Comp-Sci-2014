@@ -7,10 +7,10 @@ public class Trapezoid extends Quadrilateral implements IShape{
 	}
 
 	public int getTopLength(){
-		return (int) Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+		return (int)Math.sqrt((p1.getX()-p2.getX())*(p1.getX()-p2.getX())+(p1.getY()-p2.getY())*(p1.getY()-p2.getY()));
 	}
 	public int getBottomLength(){
-		return (int) Math.sqrt((p4.getX() - p3.getX()) * (p4.getX() - p3.getX()) + (p4.getY() - p3.getY()) * (p4.getY() - p3.getY()));
+		return (int)Math.sqrt((p4.getX()-p3.getX())*(p4.getX()-p3.getX())+(p4.getY()-p3.getY())*(p4.getY()-p3.getY()));
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class Trapezoid extends Quadrilateral implements IShape{
 
 	@Override
 	public int getLength() {
-		return (int) Math.sqrt((p2.getX() - p3.getX()) * (p2.getX() - p3.getX()) + (p2.getY() - p3.getY()) * (p2.getY() - p3.getY()));
+		return (int)Math.sqrt((p2.getX()-p3.getX())*(p2.getX()-p3.getX())+(p2.getY()-p3.getY())*(p2.getY()-p3.getY()));
 	}
 
 	@Override
