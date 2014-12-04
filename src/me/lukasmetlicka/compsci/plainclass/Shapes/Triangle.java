@@ -1,5 +1,8 @@
 package me.lukasmetlicka.compsci.plainclass.Shapes;
 
+import me.drewhoener.compsci.plainclass.shapes.IShape;
+import me.drewhoener.compsci.plainclass.shapes.Point;
+
 public class Triangle implements IShape {
 
 	Point p1,p2,p3;

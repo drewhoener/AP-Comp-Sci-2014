@@ -1,5 +1,4 @@
-package me.lukasmetlicka.compsci.plainclass.Shapes;
-import java.lang.Math;
+package me.drewhoener.compsci.plainclass.shapes;
 
 public class Rectangle extends Quadrilateral implements IShape {
 
