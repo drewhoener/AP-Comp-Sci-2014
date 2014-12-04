@@ -7,7 +7,7 @@ public class Square extends Rectangle implements IShape {
 	}
 
 	public int getLength(){
-		return (int) Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
+		return (int)Math.sqrt((p1.getX()-p2.getX())*(p1.getX()-p2.getX())+(p1.getY()-p2.getY())*(p1.getY()-p2.getY()));
 	}
 
 	@Override
