@@ -1,4 +1,4 @@
-package me.lukasmetlicka.compsci.plainclass.Shapes;
+package me.drewhoener.compsci.plainclass.shapes;
 
 public class Trapezoid extends Quadrilateral implements IShape{
 
