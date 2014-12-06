@@ -1,5 +1,6 @@
 package me.drewhoener.compsci.advanced;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -9,7 +10,16 @@ public class RemoveInteger {
 
 		List<Integer> list = new CopyOnWriteArrayList<>();
 
-		list.add(10);
+
+		//Look at this part here
+		List<Integer> list1 = Arrays.asList(1, 4, 8, 9, 11, 15, 17, 28, 41, 59);
+
+		System.out.println(list1);
+
+
+		//DON'T LOOK AT THIS PART HERE
+
+		/*list.add(10);
 		list.add(15);
 		list.add(20);
 		list.add(30);
@@ -28,7 +38,7 @@ public class RemoveInteger {
 
 		});
 
-		System.out.println(list);
+		System.out.println(list);*/
 
 	}
 
