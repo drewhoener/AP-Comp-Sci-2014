@@ -3,6 +3,7 @@ package me.drewhoener.compsci.advanced.hourofcode;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class CirclePoint {
 
@@ -116,29 +117,39 @@ public class CirclePoint {
 
 	public void translatePoint(Point p) {
 
-		if (this.color != Color.RED) {
-
-			System.out.println("To Move: " + p.toString());
-		}
+		//System.out.println("To Move: " + p.toString());
 
 		this.center.setX(this.center.getX() + p.getX());
 		this.center.setY(this.center.getY() + p.getY());
 
 	}
 
-	//0 - No room on either, 1 - no room on x, 2 - no room on y, 3 - all good
+	//0 - No room on either, 1 - no room on x -> 0, 2 - no room on y -> 0, 3 - no room on x -> xMax, 4 - no room on y -> yMax 5 - all good
 	public int closeEnough(int xMax, int yMax) {
 
-		if ((0 + (this.diameter * 2)) < this.center.getX() && (xMax - (this.diameter * 2)) > this.center.getX()) {
+		if ((-7 + (this.diameter)) < this.center.getX()) {
 
-			if ((0 + (this.diameter * 2)) < this.center.getY() && (yMax - (this.diameter * 2)) > this.center.getY()) {
+			if ((xMax - (this.diameter)) > this.center.getX()) {
 
-				return 3;
+				if ((-7 + (this.diameter)) < this.center.getY()) {
 
+					if ((yMax - (this.diameter)) > this.center.getY()) {
+
+						return 5;
+
+					} else {
+
+						return 4;
+					}
+
+				} else {
+
+					return 2;
+
+				}
 			} else {
 
-				return 2;
-
+				return 3;
 			}
 
 		} else {
@@ -150,11 +161,31 @@ public class CirclePoint {
 
 	}
 
+	public void randomChange() {
+
+		Direction direction = Direction.randomDir();
+
+		int i = new Random().nextInt(2);
+
+		if (i == 0) {
+			this.primaryDir = direction;
+
+		} else {
+
+			this.secondaryDir = direction;
+		}
+
+	}
+
 	public void moveWithDir() {
 
 		this.translatePoint(this.primaryDir.getMovement());
 
-		if (this.secondaryDir != this.primaryDir && this.secondaryDir != Direction.actualOpposite(this.primaryDir)) {
+		if (this.secondaryDir == Direction.actualOpposite(this.primaryDir)) {
+			this.secondaryDir = Direction.randomDir();
+		}
+
+		if (this.secondaryDir != this.primaryDir) {
 			this.translatePoint(this.secondaryDir.getMovement());
 		}
 
