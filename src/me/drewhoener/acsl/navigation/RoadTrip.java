@@ -48,7 +48,7 @@ public class RoadTrip {
 		int castNum = (int) number;
 		double minutes = ((number - castNum) * 60D);
 
-		if (minutes < 10) {
+		if (Math.round(minutes) < 10) {
 			return "0" + Math.round(minutes);
 		}
 

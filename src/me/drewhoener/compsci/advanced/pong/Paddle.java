@@ -4,33 +4,60 @@ import java.awt.*;
 
 public class Paddle {
 
-	private Rectangle paddle;
-	private Color paddleColor;
+	private Point corner;
+
+	int width;
+	int height;
+	Color color;
 
 	public Paddle() {
 
-		this(Color.RED);
+		this(15, 160, Color.BLACK);
 
 	}
 
-	public Paddle(Color paddleColor) {
+	public Paddle(Point corner) {
 
-		this(new Rectangle(5, 5, 10, 50), paddleColor);
-	}
-
-	public Paddle(Rectangle paddle, Color paddleColor) {
-
-		this.paddleColor = paddleColor;
-		this.paddle = paddle;
+		this.height = 160;
+		this.width = 15;
+		this.color = Color.BLACK;
+		this.corner = corner;
 
 	}
 
-	public void drawPaddle(Graphics2D graphics) {
+	public Paddle(int width, int height, Color color) {
 
-		graphics.setColor(this.paddleColor);
-		graphics.fill(this.paddle);
+		this.height = height;
+		this.width = width;
+		this.color = color;
+		this.corner = new Point(45, 30);
 
 	}
+
+	public void drawPaddle(Graphics2D g) {
+
+		g.setColor(Color.WHITE);
+		g.fillRect(this.corner.getX(), this.corner.getY(), this.width, this.height);
+
+	}
+
+	public Point getCorner() {
+		return this.corner;
+	}
+
+	public void moveUp() {
+		if (this.corner.getY() > 0)
+			this.corner.translate(0, -45);
+
+	}
+
+	public void moveDown() {
+		if (this.corner.getY() < PongPanel.HEIGHT - this.height)
+			this.corner.translate(0, 45);
+
+	}
+
+
 
 
 }
