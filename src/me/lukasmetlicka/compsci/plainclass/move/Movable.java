@@ -19,6 +19,5 @@ public interface Movable {
 	public void setY(int y);
 	public void setCenter(int x, int y);
 
-	public String toString();
 
 }
