@@ -28,12 +28,11 @@ public class Snake {
 	public Snake(Point p, Color headColor, Color bodyColor) {
 		this.headColor = headColor;
 		this.bodyColor = bodyColor;
-		this.curDirection = Direction.RIGHT;
 		pointList.clear();
 		CirclePoint head = new CirclePoint(p, this.headColor);
-		head.setCurDir(this.curDirection);
 		pointList.add(head);
 		this.length = 1;
+		this.curDirection = Direction.RIGHT;
 	}
 
 	public Snake(Point p, BufferedImage image, Color bodyColor) {
@@ -56,21 +55,8 @@ public class Snake {
 
 		if (this.canPlay) {
 
-
-			System.out.println("Direction: " + this.curDirection.toString());
-			this.pointList.get(0).translatePointNormal(this.curDirection.getMovement());
-			this.pointList.get(0).setColor(this.headColor);
-
 			if (this.pointList.size() > 1) {
 
-				for (int i = 1; i < this.pointList.size(); i++) {
-
-					this.pointList.get(i).translatePointNormal(this.pointList.get(i).toMoveAdjacent(this.pointList.get(i - 1)).getMovement());
-					this.pointList.get(i).setColor(this.bodyColor);
-
-					}
-
-				/*
 				tempPoint = this.pointList.get(1);
 				tempPoint.setColor(this.bodyColor);
 				this.pointList.set(1, new CirclePoint(this.pointList.get(0).getCenter(), this.bodyColor));
@@ -83,8 +69,12 @@ public class Snake {
 
 					this.pointList.get(i).setColor(this.bodyColor);
 
-				}*/
+				}
 			}
+
+			CirclePoint first = this.pointList.get(0).translatePoint(this.curDirection.getMovement());
+
+			this.pointList.set(0, first);
 		}
 
 	}
@@ -101,15 +91,11 @@ public class Snake {
 
 	public boolean interact(CirclePoint cp) {
 
-		if (Math.abs(cp.getCenter().getX() - this.getHead().getX()) <= 5 && Math.abs(cp.getCenter().getY() - this.getHead().getY()) <= 5) {
-			System.out.println("add the point?");
-			CirclePoint beforePoint = this.pointList.get(this.pointList.size() - 1);
+		if (cp.getCenter().getX() == this.getHead().getX() && cp.getCenter().getY() == this.getHead().getY()) {
 
-			CirclePoint addPoint = new CirclePoint(beforePoint.getCenter().clone(), this.bodyColor);
-			addPoint.translatePointNormal(new Point(getOptimalCoords().getNormalMovement().getX(), getOptimalCoords().getNormalMovement().getY()));
-			this.pointList.add(addPoint);
-			this.pointList.get(this.pointList.size() - 1).setCurDir(this.curDirection);
-			System.out.println("New Point Center: " + this.pointList.get(this.pointList.size() - 1).getCenter().toString());
+
+			System.out.println("add the point?");
+			this.pointList.add(this.pointList.get(this.pointList.size() - 1).translatePoint(getOptimalCoords().getMovement()));
 			System.out.println(this.pointList.size());
 			return true;
 

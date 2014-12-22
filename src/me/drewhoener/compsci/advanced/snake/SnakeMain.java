@@ -26,7 +26,7 @@ public class SnakeMain {
 			mainFrame.setLocationRelativeTo(null);
 			mainFrame.setVisible(true);
 
-			int delay = 20; //milliseconds
+			int delay = 200; //milliseconds
 
 			ActionListener taskPerformer = evt -> game.repaint();
 
@@ -39,9 +39,7 @@ public class SnakeMain {
 		SwingUtilities.invokeLater(r);
 
 		/*int delay = 500; //milliseconds
-
 		ActionListener taskPerformer = evt -> game.repaint();
-
 		new Timer(delay, taskPerformer).start();
 		*/
 
