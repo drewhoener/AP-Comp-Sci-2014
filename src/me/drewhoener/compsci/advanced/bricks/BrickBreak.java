@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BrickBreak extends JPanel {
@@ -14,15 +15,15 @@ public class BrickBreak extends JPanel {
 	private int sleep = 50;
 
 	private Paddle paddle;
-	private Ball ball;
 	private List<BrickPiece> bricks = new CopyOnWriteArrayList<>();
+	private List<Ball> balls = new CopyOnWriteArrayList<>();
 
 	public BrickBreak() {
 
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setBackground(Color.BLACK);
 		this.addKeyListener(listener);
-		this.ball = new Ball(Color.RED);
+		this.balls.add(new Ball(Color.RED));
 		this.paddle = new Paddle(new Point(WIDTH / 3, HEIGHT - 20));
 		this.setFocusable(true);
 		this.requestFocusInWindow();
@@ -83,7 +84,9 @@ public class BrickBreak extends JPanel {
 
 	public void drawRedraw(Graphics2D g) {
 
-		this.ball.drawBall(g);
+		for (Ball ball : this.balls) {
+			ball.drawBall(g);
+		}
 		this.paddle.drawPaddle(g);
 
 		for (BrickPiece piece : this.bricks) {
@@ -92,7 +95,11 @@ public class BrickBreak extends JPanel {
 
 		this.interact();
 
-		this.ball.moveBall();
+		for (Ball ball : this.balls) {
+
+			ball.moveBall();
+
+		}
 
 
 	}
@@ -100,57 +107,64 @@ public class BrickBreak extends JPanel {
 	public void remove(BrickPiece piece) {
 
 		if (this.bricks.contains(piece)) {
+			Random r = new Random();
 			this.bricks.remove(piece);
+			if (r.nextInt(10) == 3)
+				this.balls.add(new Ball(new Point(r.nextInt(WIDTH), r.nextInt(HEIGHT / 2) + HEIGHT / 2 - 10), Color.RED));
+
 		}
 
 	}
 
 	public void interact() {
 
-		if (!this.bricks.isEmpty()) {
-			for (BrickPiece piece : this.bricks) {
+		for (Ball ball : this.balls) {
 
-				if (piece.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 1) {
-					this.ball.getCenter().translate(-2, 0);
-					this.ball.reverseX();
-					this.remove(piece);
-				} else if (piece.pointCollide(this.ball.getCenter(), this.ball.getRadius()) == 2) {
-					this.ball.getCenter().translate(2, 0);
-					this.ball.reverseX();
-					this.remove(piece);
-				} else if (piece.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 3) {
-					this.ball.getCenter().translate(0, -2);
-					this.ball.reverseY();
-					this.remove(piece);
-				} else if (piece.pointCollide(this.ball.getCenter(), this.ball.getRadius()) == 4) {
-					this.ball.getCenter().translate(0, 3);
-					this.ball.reverseY();
-					this.remove(piece);
+			if (!this.bricks.isEmpty()) {
+				for (BrickPiece piece : this.bricks) {
+
+					if (piece.pointCollide(ball.getCenter(), ball.getDiameter()) == 1) {
+						ball.getCenter().translate(-2, 0);
+						ball.reverseX();
+						this.remove(piece);
+					} else if (piece.pointCollide(ball.getCenter(), ball.getRadius()) == 2) {
+						ball.getCenter().translate(2, 0);
+						ball.reverseX();
+						this.remove(piece);
+					} else if (piece.pointCollide(ball.getCenter(), ball.getDiameter()) == 3) {
+						ball.getCenter().translate(0, -2);
+						ball.reverseY();
+						this.remove(piece);
+					} else if (piece.pointCollide(ball.getCenter(), ball.getRadius()) == 4) {
+						ball.getCenter().translate(0, 3);
+						ball.reverseY();
+						this.remove(piece);
+					}
+
 				}
-
 			}
-		}
 
-		if (this.paddle.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 1) {
-			this.ball.getCenter().translate(-2, 0);
-			this.ball.reverseX();
-		} else if (this.paddle.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 2) {
-			this.ball.getCenter().translate(2, 0);
-			this.ball.reverseX();
-		} else if (this.paddle.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 3) {
-			this.ball.getCenter().translate(0, -2);
-			this.ball.reverseY();
-		} else if (this.paddle.pointCollide(this.ball.getCenter(), this.ball.getDiameter()) == 4) {
-			this.ball.getCenter().translate(0, 2);
-			this.ball.reverseY();
-		}
+			if (this.paddle.pointCollide(ball.getCenter(), ball.getDiameter()) == 1) {
+				ball.getCenter().translate(-2, 0);
+				ball.reverseX();
+			} else if (this.paddle.pointCollide(ball.getCenter(), ball.getDiameter()) == 2) {
+				ball.getCenter().translate(2, 0);
+				ball.reverseX();
+			} else if (this.paddle.pointCollide(ball.getCenter(), ball.getDiameter()) == 3) {
+				ball.getCenter().translate(0, -2);
+				ball.reverseY();
+			} else if (this.paddle.pointCollide(ball.getCenter(), ball.getDiameter()) == 4) {
+				ball.getCenter().translate(0, 2);
+				ball.reverseY();
+			}
 
-		if (this.ball.getCenter().getX() - this.ball.getRadius() < 0 || this.ball.getCenter().getX() + this.ball.getDiameter() >= WIDTH) {
-			this.ball.reverseX();
-		}
+			if (ball.getCenter().getX() - ball.getRadius() < 0 || ball.getCenter().getX() + ball.getDiameter() >= WIDTH) {
+				ball.reverseX();
+			}
 
-		if (this.ball.getCenter().getY() - this.ball.getRadius() < 0 || this.ball.getCenter().getY() + this.ball.getDiameter() >= HEIGHT) {
-			this.ball.reverseY();
+			if (ball.getCenter().getY() - ball.getRadius() < 0 || ball.getCenter().getY() + ball.getDiameter() >= HEIGHT) {
+				ball.reverseY();
+			}
 		}
 
 	}

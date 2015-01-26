@@ -17,6 +17,13 @@ public class Ball {
 
 	}
 
+	public Ball(Point center, Color color) {
+
+		this.center = center;
+		this.color = color;
+
+	}
+
 	public int getyMovement() {
 		return yMovement;
 	}
