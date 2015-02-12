@@ -1,9 +1,22 @@
 package me.lukasmetlicka.compsci.plainclass;
 
+import java.util.Arrays;
+
 public class ArrayProblem {
 
 	public static void main(String[] args) {
+		int[][] a1 = new int[2][3];
+		a1[1][2] = 1;
+		System.out.println(max(a1));
 
+		a1[1][0] = 3;
+		System.out.println(rowSum(a1,1));
+
+		System.out.println(columnSum(a1,0));
+
+		System.out.println(Arrays.toString(allRowSums(a1)));
+
+		System.out.println(isMagic(a1, 0));
 
 	}
 
