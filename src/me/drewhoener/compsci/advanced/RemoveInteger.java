@@ -1,45 +1,74 @@
 package me.drewhoener.compsci.advanced;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class RemoveInteger {
 
 	public static void main(String[] args) {
 
-		List<Integer> list = new CopyOnWriteArrayList<>();
+		Testing1 test = new Testing1();
 
 
-		//Look at this part here
-		List<Integer> list1 = Arrays.asList(1, 4, 8, 9, 11, 15, 17, 28, 41, 59);
-
-		System.out.println(list1);
+	}
 
 
-		//DON'T LOOK AT THIS PART HERE
+}
 
-		/*list.add(10);
-		list.add(15);
-		list.add(20);
-		list.add(30);
-		list.add(40);
-		list.add(50);
-		list.add(60);
-		list.add(70);
-		list.add(80);
-		list.add(90);
-		list.add(100);
+class Testing1 {
 
 
-		list.stream().filter(i -> i % 2 == 0).forEach(i -> {
+	Scanner scan = new Scanner(System.in);
 
-			list.remove(list.indexOf(i));
+	public Testing1() {
+		run();
+	}
 
-		});
+	public void run() {
 
-		System.out.println(list);*/
+		System.out.println(apcsReplaceAll("to be or not to be", "2", "to"));
 
+	}
+
+	public String apcsReplaceAll(String mainStr, String newPart, String toReplace) {
+
+		String toReturn = "";
+
+		while (mainStr.length() > 0) {
+
+			toReturn += mainStr.substring(0, mainStr.indexOf(toReplace)) + newPart;
+			mainStr = mainStr.substring(mainStr.indexOf(toReplace) + mainStr.length());
+
+		}
+
+		return toReturn;
+	}
+
+
+}
+
+
+class RandomName {
+	public String goal;
+	private int counter;
+	public final String[] letters = {" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+	public Random rand = new Random();
+
+	public RandomName(String a) {
+		goal = a;
+	}
+
+	public int findGoal() {
+		String tryer = " ";
+		while (!tryer.equalsIgnoreCase(goal)) {
+			tryer += letters[rand.nextInt(26)];
+			if (tryer.length() > goal.length())
+				tryer = " ";
+			//System.out.println(tryer);
+			counter++;
+		}
+		System.out.println(tryer);
+		return counter;
 	}
 
 }

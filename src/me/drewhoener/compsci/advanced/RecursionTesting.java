@@ -8,6 +8,7 @@ public class RecursionTesting {
 		System.out.println(rt.isPalindrome("racecar"));
 		System.out.println(rt.isPalindrome("a"));
 		System.out.println(Integer.toBinaryString(13));
+		System.out.println(rt.weirder(3, 2));
 
 	}
 
@@ -29,6 +30,20 @@ public class RecursionTesting {
 		}
 
 		return reverse;
+
+	}
+
+	public int weirder(int r, int s) {
+
+		if (r == 0 || r == s) {
+
+			return 1;
+
+		} else {
+
+			return weirder(r - 1, s) + weirder(r - 1, s - 1);
+
+		}
 
 	}
 
