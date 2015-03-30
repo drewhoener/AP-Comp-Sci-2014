@@ -26,7 +26,7 @@ class Testing1 {
 
 	public void run() {
 
-		System.out.println(apcsReplaceAll("to be or not to be", "2", "to"));
+		this.doThing(6, 3);
 
 	}
 
@@ -42,6 +42,14 @@ class Testing1 {
 		}
 
 		return toReturn;
+	}
+
+	public void doThing(int a, int b) {
+
+		a *= b;
+		b *= a;
+		System.out.println(a + " " + b);
+
 	}
 
 

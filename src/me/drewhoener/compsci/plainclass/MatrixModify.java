@@ -1,5 +1,6 @@
 package me.drewhoener.compsci.plainclass;
 
+
 public class MatrixModify {
 
 
@@ -16,7 +17,7 @@ public class MatrixModify {
 		matrixModify.printArray(charArray);
 		System.out.println();
 		System.out.println();
-		matrixModify.copyDiagonalRightLeft(charArray);
+		matrixModify.copyHorizontalTopBottom(charArray);
 		matrixModify.printArray(charArray);
 		System.out.println();
 		System.out.println();
@@ -24,7 +25,7 @@ public class MatrixModify {
 
 	}
 
-	public <T extends Object> void printArray(T[][] a) {
+	public <T> void printArray(T[][] a) {
 		for (int i = 0; i < a.length; i++) {
 			for (int j = 0; j < a[i].length; j++) {
 				System.out.printf(a[i][j] + "\t");
@@ -34,7 +35,7 @@ public class MatrixModify {
 	}
 
 
-	public <T extends Object> void copyVerticalRightLeft(T[][] list) {
+	public <T> void copyVerticalRightLeft(T[][] list) {
 
 		for (int i = 0; i < list.length; i++) {
 
@@ -50,7 +51,7 @@ public class MatrixModify {
 
 	}
 
-	public <T extends Object> void copyVerticalLeftRight(T[][] list) {
+	public <T> void copyVerticalLeftRight(T[][] list) {
 
 		for (int i = 0; i < list.length; i++) {
 
@@ -64,7 +65,7 @@ public class MatrixModify {
 
 	}
 
-	public <T extends Object> void copyHorizontalTopBottom(T[][] list) {
+	public <T> void copyHorizontalTopBottom(T[][] list) {
 
 		for (int i = 0; i < list.length / 2; i++) {
 
@@ -78,7 +79,7 @@ public class MatrixModify {
 
 	}
 
-	public <T extends Object> void copyHorizontalBottomTop(T[][] list) {
+	public <T> void copyHorizontalBottomTop(T[][] list) {
 
 		for (int i = 0; i < list.length / 2; i++) {
 
@@ -92,7 +93,7 @@ public class MatrixModify {
 
 	}
 
-	public <T extends Object> void copyDiagonalRightLeft(T[][] list) {
+	public <T> void copyDiagonalRightLeft(T[][] list) {
 
 		for (int i = 0; i < list.length; i++) {
 
