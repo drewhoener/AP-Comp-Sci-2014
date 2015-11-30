@@ -98,13 +98,4 @@ public class BMI {
 
     }
 
-    public void singleSpace() {
-        System.out.println();
-    }
-
-    public void doubleSpace() {
-        System.out.println();
-        System.out.println();
-    }
-
 }

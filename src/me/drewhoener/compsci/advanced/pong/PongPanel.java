@@ -110,7 +110,7 @@ public class PongPanel extends JPanel {
 		this.drawRedraw((Graphics2D) g);
 
 		try {
-			Thread.sleep(2);
+			Thread.sleep(3);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
@@ -147,56 +147,38 @@ public class PongPanel extends JPanel {
 	public void interact() {
 
 
-		if (this.pongBall.getCenter().getX() < (this.leftPaddle.getCorner().getX() + this.leftPaddle.width + this.pongBall.getRadius() - 3) &&
-				this.pongBall.getCenter().getX() > this.leftPaddle.getCorner().getX()) {
-
-			if (this.pongBall.getCenter().getY() > this.leftPaddle.getCorner().getY() &&
-					this.pongBall.getCenter().getY() < this.leftPaddle.getCorner().getY() + this.leftPaddle.height) {
-
-				this.pongBall.reverseX();
-				this.playSound();
-				//this.stopSound();
-
-			}
-
+		if (this.leftPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 1) {
+			pongBall.getCenter().translate(-2, 0);
+			pongBall.reverseX();
+		} else if (this.leftPaddle.pointCollide(pongBall.getCenter(), pongBall.getRadius() / 2) == 2) {
+			pongBall.getCenter().translate(2, 0);
+			pongBall.reverseX();
+		} else if (this.leftPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 3) {
+			pongBall.getCenter().translate(0, -2);
+			pongBall.reverseY();
+		} else if (this.leftPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 4) {
+			pongBall.getCenter().translate(0, 2);
+			pongBall.reverseY();
 		}
 
-
-		if (this.pongBall.getCenter().getX() > (this.rightPaddle.getCorner().getX() - this.pongBall.getDiameter() - 2) &&
-				this.pongBall.getCenter().getX() < this.rightPaddle.getCorner().getX() + (WIDTH - this.rightPaddle.getCorner().getX() + this.rightPaddle.width)) {
-
-			if (this.pongBall.getCenter().getY() > this.rightPaddle.getCorner().getY() &&
-					this.pongBall.getCenter().getY() < this.rightPaddle.getCorner().getY() + this.rightPaddle.height) {
-
-				this.pongBall.reverseX();
-				this.playSound();
-				//this.stopSound();
-
-			}
-
+		if (this.rightPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 1) {
+			pongBall.getCenter().translate(-2, 0);
+			pongBall.reverseX();
+		} else if (this.rightPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 2) {
+			pongBall.getCenter().translate(2, 0);
+			pongBall.reverseX();
+		} else if (this.rightPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 3) {
+			pongBall.getCenter().translate(0, -2);
+			pongBall.reverseY();
+		} else if (this.rightPaddle.pointCollide(pongBall.getCenter(), pongBall.getDiameter()) == 4) {
+			pongBall.getCenter().translate(0, 2);
+			pongBall.reverseY();
 		}
 
-		if (this.pongBall.getCenter().getX() > this.leftPaddle.getCorner().getX() && this.pongBall.getCenter().getX() < (this.leftPaddle.getCorner().getX() + this.leftPaddle.width)) {
-
-			if (this.pongBall.getCenter().getY() > this.leftPaddle.getCorner().getY()) {
-				this.pongBall.reverseY();
-
-			} else if (this.pongBall.getCenter().getY() < this.leftPaddle.getCorner().getY()) {
-				this.pongBall.reverseY();
-			}
-
+		if (pongBall.getCenter().getY() - pongBall.getRadius() <= 0 || pongBall.getCenter().getY() + pongBall.getDiameter() >= HEIGHT) {
+			pongBall.reverseY();
 		}
 
-		if (this.pongBall.getCenter().getX() > this.rightPaddle.getCorner().getX() && this.pongBall.getCenter().getX() < (this.rightPaddle.getCorner().getX() + this.rightPaddle.width)) {
-
-			if (this.pongBall.getCenter().getY() > this.rightPaddle.getCorner().getY()) {
-				this.pongBall.reverseY();
-
-			} else if (this.pongBall.getCenter().getY() < this.rightPaddle.getCorner().getY()) {
-				this.pongBall.reverseY();
-			}
-
-		}
 
 		if (this.pongBall.getCenter().getX() < 37) {
 

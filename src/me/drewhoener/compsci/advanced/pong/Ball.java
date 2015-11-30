@@ -8,7 +8,7 @@ public class Ball {
 	private Point center;
 	private int diameter = 20;
 	private int yMovement = 2;
-	private int xMovement = 2;
+	private int xMovement = -2;
 
 	public Ball(Color color) {
 
