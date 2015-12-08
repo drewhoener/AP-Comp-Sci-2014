@@ -1,8 +1,13 @@
-
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineEvent.Type;
+import javax.sound.sampled.LineListener;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.LineEvent.Type;
 
 public class SoundUtil{
 
@@ -30,7 +35,7 @@ public class SoundUtil{
     }
   
     AudioListener listener = new AudioListener();
-    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clipFile);
+    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
     try {
     
       Clip clip = AudioSystem.getClip();

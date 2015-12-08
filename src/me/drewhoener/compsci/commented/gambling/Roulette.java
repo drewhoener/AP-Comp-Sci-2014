@@ -58,7 +58,7 @@ public class Roulette {
 				b.winGame();
 			}
 		}
-		//System.out.println("\t" + a.name + " _ " + a.getBalance() + " : " + b.name + " _ " + b.getBalance());
+		System.out.println("\t" + a.name + " _ " + a.getBalance() + " : " + b.name + " _ " + b.getBalance());
 	}
 
 
