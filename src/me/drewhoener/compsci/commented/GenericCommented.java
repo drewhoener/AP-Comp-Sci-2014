@@ -5,8 +5,15 @@ public class GenericCommented {
 	public static void main(String[] args) {
 		String[] stuff = {"How", "are", "you", "today"};
 		System.out.println(joinArray(stuff));
-
-
+		/**
+		 * Defined as an array of the class Number so I can fill it with
+		 * double, float, int, short and long (respectively). Autoboxing comes
+		 * into play here, you can read about it below
+		 * Because these are all primitive, they have to be autoboxed to their "wrapper" class
+		 * which is done automatically
+		 * */
+		Number[] numbers = {2.0D, 3F, 5, (short) 2, 225L};
+		System.out.println(multiplyAll(numbers));
 	}
 
 	/**
