@@ -22,6 +22,7 @@ public class DateFormatTest {
         System.out.println(new DecimalFormat("#.00").format(590D / 60D));*/
 
         System.out.println("Hi Hi".toCharArray().length);
+        System.out.println((int) Math.ceil(3 / 27D));
 
 
     }

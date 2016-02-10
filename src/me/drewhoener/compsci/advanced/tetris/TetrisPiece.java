@@ -13,7 +13,8 @@ public enum TetrisPiece {
 	INVERSE_T(new int[][]{{0, 1, 0}, {1, 1, 1}}, new Color(128, 0, 128)),
 	LONG_PIECE(new int[][]{{1}, {1}, {1}, {1}}, Color.CYAN),
 	LONG_LEFT(new int[][]{{0, 1}, {0, 1}, {1, 1}}, Color.BLUE),
-	LONG_RIGHT(new int[][]{{1, 0}, {1, 0}, {1, 1}}, Color.ORANGE);
+	LONG_RIGHT(new int[][]{{1, 0}, {1, 0}, {1, 1}}, Color.ORANGE),
+	LONG_U(new int[][]{{1, 1, 1}, {1, 0, 1}}, Color.PINK);
 
 
 	public int[][] pieceGrid;

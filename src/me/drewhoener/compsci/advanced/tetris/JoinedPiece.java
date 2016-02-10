@@ -1,12 +1,12 @@
 package me.drewhoener.compsci.advanced.tetris;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class JoinedPiece {
 
-	private List<Rectangle> pieces = new ArrayList<>();
+	private CopyOnWriteArrayList<Rectangle> pieces = new CopyOnWriteArrayList<>();
 
 	private int pixelWidth;
 	private int pixelHeight;

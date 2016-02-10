@@ -1,10 +1,13 @@
 package me.drewhoener.compsci.advanced.tetris;
 
 import javax.swing.*;
+import java.util.UUID;
 
 public class MainUnit {
 
 	public static void main(String[] args) {
+
+		System.out.println(UUID.randomUUID().toString());
 
 		SwingUtilities.invokeLater(() -> {
 

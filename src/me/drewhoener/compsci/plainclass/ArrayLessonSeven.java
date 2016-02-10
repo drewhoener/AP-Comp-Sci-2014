@@ -8,7 +8,7 @@ public class ArrayLessonSeven {
 
 		ArrayLessonSeven lesson = new ArrayLessonSeven();
 
-		int[] tester = {-3, 0, 7, -19, 0, 2};
+		/*int[] tester = {-3, 0, 7, -19, 0, 2};
 		lesson.zeroFront(tester);
 		System.out.println(Arrays.toString(tester));
 		System.out.println();
@@ -28,6 +28,16 @@ public class ArrayLessonSeven {
 		int[] array = {3, 8, 10, 1, 9, 14, -3, 0, 14, 207, 56, 98, 12};
 
 		System.out.println(lesson.longestSortedSequence(array));
+		*/
+
+		//int[][] arr = {{1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}};
+		String[][] arr = {{"Hi", "there", "AP", "CS"}, {"students!", "Do", "you", "understand"}, {"2D", "arrays", "yet?", "^_^"}};
+
+		lesson.method(arr);
+		for (String[] i : arr) {
+			System.out.println(Arrays.toString(i));
+		}
+
 
 	}
 
@@ -109,4 +119,39 @@ public class ArrayLessonSeven {
 		return -1;
 
 	}
+
+	/**
+	 * Precondition: Dimensions are N x N
+	 */
+	public void setDiagonalsZero(int[][] arr) {
+
+		for (int i = 0; i < arr.length; i++) {
+
+			arr[i][i] = 0;
+			arr[i][arr.length - 1 - i] = 0;
+
+		}
+
+	}
+
+	public void method(String[][] strArr) {
+
+		String[][] result = new String[strArr.length][strArr[0].length];
+
+		for (int col = 0; col < strArr.length; col++) {
+			for (int row = 0; row < strArr[0].length; row++) {
+
+				if (strArr[col][row].length() > 3) {
+					result[col][row] = strArr[col][row].substring(strArr[col][row].length() / 2);
+				} else {
+					result[col][row] = strArr[col][row];
+				}
+
+			}
+		}
+
+		strArr = result;
+	}
+
+
 }

@@ -15,7 +15,6 @@ public class TetrisPanel extends JPanel implements KeyListener, Runnable {
 	Thread updateThread;
 	private boolean isRunning = false;
 	private BufferedImage image;
-	private Graphics2D imageGraphics;
 
 	public static final int RENDERING_HEIGHT = 779;
 	public static final int ACTUAL_HEIGHT = 780;
@@ -37,7 +36,7 @@ public class TetrisPanel extends JPanel implements KeyListener, Runnable {
 		super(true);
 		this.setPreferredSize(new Dimension(ACTUAL_WIDTH, ACTUAL_HEIGHT));
 
-		JoinedPiece piece = new JoinedPiece(TetrisPiece.LONG_PIECE);
+		JoinedPiece piece = new JoinedPiece(TetrisPiece.LONG_U);
 		piece.setPosition(2 * PIXEL_SIZE, 2 * PIXEL_SIZE - 1);
 		this.activePiece = piece;
 		for (int i = 30; i < PLAY_WIDTH; i += 60) {
@@ -64,7 +63,7 @@ public class TetrisPanel extends JPanel implements KeyListener, Runnable {
 		long timer = JoinedPiece.PIECE_DELAY;
 
 		this.image = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(ACTUAL_WIDTH, ACTUAL_HEIGHT);
-		this.imageGraphics = ((Graphics2D) this.image.getGraphics());
+		Graphics2D imageGraphics = ((Graphics2D) this.image.getGraphics());
 
 		while (this.isRunning) {
 
@@ -73,12 +72,12 @@ public class TetrisPanel extends JPanel implements KeyListener, Runnable {
 				timer = JoinedPiece.PIECE_DELAY;
 			}
 
-			this.imageGraphics.setColor(Color.BLACK);
-			this.imageGraphics.fillRect(0, 0, ACTUAL_WIDTH, ACTUAL_HEIGHT);
-			this.drawToImage(this.imageGraphics);
+			imageGraphics.setColor(Color.BLACK);
+			imageGraphics.fillRect(0, 0, ACTUAL_WIDTH, ACTUAL_HEIGHT);
+			this.drawToImage(imageGraphics);
 			this.drawImage();
-			this.imageGraphics.dispose();
-			this.imageGraphics = ((Graphics2D) this.image.getGraphics());
+			imageGraphics.dispose();
+			imageGraphics = ((Graphics2D) this.image.getGraphics());
 
 			try {
 				Thread.sleep(SLEEP_TIME);
@@ -256,6 +255,7 @@ public class TetrisPanel extends JPanel implements KeyListener, Runnable {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_SHIFT:
+			case KeyEvent.VK_ENTER:
 			case KeyEvent.VK_R:
 				this.activePiece.rotateShape();
 				//Make sure that we aren't going over the sides
