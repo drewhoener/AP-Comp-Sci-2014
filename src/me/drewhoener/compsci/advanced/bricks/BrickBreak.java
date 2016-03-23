@@ -12,7 +12,7 @@ public class BrickBreak extends JPanel {
 
 	public static int WIDTH = 600;
 	public static int HEIGHT = 800;
-	private int sleep = 50;
+	private int sleep = 8;
 
 	private Paddle paddle;
 	private List<BrickPiece> bricks = new CopyOnWriteArrayList<>();

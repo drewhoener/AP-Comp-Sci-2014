@@ -33,7 +33,6 @@ public class SnakeMain {
 
 			new Timer(delay, taskPerformer).start();
 
-
 		};
 
 		SwingUtilities.invokeLater(r);
