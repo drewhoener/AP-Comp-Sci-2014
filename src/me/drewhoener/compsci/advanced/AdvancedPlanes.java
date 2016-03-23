@@ -1,4 +1,4 @@
-package me.drewhoener.compsci;
+package me.drewhoener.compsci.advanced;
 
 import java.util.ArrayList;
 import java.util.Collections;
