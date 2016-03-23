@@ -19,7 +19,7 @@ public class Airplanes {
 	public static void main(String[] args) {
 
 		//This could be done a whole lot better but honestly I don't care
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 10000000; i++) {
 
 			Airplanes ap = new Airplanes();
 

@@ -1,153 +1,99 @@
 package me.drewhoener.compsci;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class AdvancedPlanes {
 
-	private static List<Boolean> testerResults = new ArrayList<>();
-
-
 	public static final Random RANDOM = new Random();
 
-	private boolean[] isFilled;
-	private List<Integer> availableSeats;
-	public static int[] orderOfBoarding;
+	public List<Passenger> boardingList = new ArrayList<>();
+	public Passenger[] airplaneSeating = new Passenger[100];
 
-	//Yeah I mix my tester class with the program, so sue me
+	static double timesEmpty;
+
 	public static void main(String[] args) {
 
-		//This could be done a whole lot better but honestly I don't care
+		AdvancedPlanes ap = new AdvancedPlanes();
+
 		for (int i = 0; i < 10000; i++) {
-
-			AdvancedPlanes ap = new AdvancedPlanes();
-
-			//System.out.println(Arrays.toString(orderOfBoarding));
-			//System.out.println(ap.availableSeats.toString());
-
-			ap.processFirstPassenger();
-			ap.simulate();
-			testerResults.add(ap.isLastPassengerSeatEmpty());
+			if (ap.runBoarding())
+				timesEmpty++;
 
 		}
 
-		double numPositive = 0;
-
-		for (boolean bool : testerResults) {
-			if (bool)
-				numPositive++;
-		}
-
-		//System.out.println("Is Empty: " + testerResults.get(0));
-		System.out.println("Times Empty: " + numPositive);
-		System.out.println("Size: " + testerResults.size());
+		System.out.println((timesEmpty / 10000D));
 
 	}
 
-	public AdvancedPlanes() {
-		isFilled = new boolean[100];
+	public boolean runBoarding() {
 
-		orderOfBoarding = new int[100];
-
-		availableSeats = new ArrayList<Integer>();
+		boardingList.clear();
 
 		for (int i = 0; i < 100; i++) {
-			//Passenger is added to the array with an index that also represents the number they were called
-			availableSeats.add(i);
-			//Order is recorded so we can find them later, even if the stuff is switched around
-			//Since the values will remain the same after a shuffle, we have a viable method of
-			//seating the people randomly
-			orderOfBoarding[i] = i;
+
+			boardingList.add(new Passenger(i));
+			airplaneSeating[i] = null;
+
 		}
 
-		// shuffle array
-		//
-		shuffleArray(orderOfBoarding);
-	}
+		Collections.shuffle(boardingList);
+		//System.out.println(boardingList.toString());
 
-	//We don't go about finding this guy's seat like normal, going through the boarding list
-	//becuase he's an ass.
-	public void processFirstPassenger() {
-		// create random seat for first passenger: use int random
-		int random = RANDOM.nextInt(isFilled.length);
+		int rand = RANDOM.nextInt(100);
+		airplaneSeating[rand] = boardingList.get(0);
 
-		//System.out.println("Passenger " + orderOfBoarding[0] + " took the seat of passenger " + random);
+		for (int i = 1; i < 99; i++) {
 
-		// fill that seat
-		isFilled[random] = true;
-		// remove seat from availableSeats
-		availableSeats.remove(new Integer(random));
+			Passenger p = boardingList.get(i);
+			if (airplaneSeating[p.seat] == null) {//empty
 
-		//System.out.println();
+				airplaneSeating[p.seat] = p;
 
-	}
+			} else {//full
 
-	// process passenger #2 to #99 and assign them seats
-	public void simulate() {
-
-
-		//This admittedly had me stumped for a while, couldn't figure out how to get the seat if we're removing filled
-		//ones from the arraylist. I remembered we have a log with the array isFilled, so we check that and see
-		//If it's true, then we pick a random seat, simple
-		//Sure I could be using numbers instead of the length of the array, but I like it better this way
-		for (int i = 1; i < isFilled.length - 1; i++) {
-
-			//The boarding list has the order, the contents has the seat number
-			int passengerID = orderOfBoarding[i];
-
-			if (isFilled[passengerID]) {
-				//Then we find them a random seat, just like with the first passenger
-				//Generate it from however many are left
-				int randomSeat = availableSeats.get(RANDOM.nextInt(availableSeats.size()));
-
-				//System.out.println(availableSeats.toString());
-				//System.out.println("Seat of passenger " + passengerID + " is full, they will now be taking " + randomSeat);
-				//System.out.println();
-
-				isFilled[randomSeat] = true;
-				availableSeats.remove(new Integer(randomSeat));
-
-			} else {
-				//whoop dee doo...
-				isFilled[passengerID] = true;
-				//This seemed stupid at first, but the remove() method, when used with an object, finds the index
-				//and removes that index, instead of treating the number I give it like the number to remove
-				//System.out.println(availableSeats.toString());
-				availableSeats.remove(new Integer(passengerID));
-				//System.out.println("Seat of passenger " + passengerID + " is empty, they will now be taking " + passengerID);
-				//System.out.println();
-
+				//contains all the number seats remaining
+				Integer[] remainingSeats = this.getSeatsRemaining();
+				airplaneSeating[remainingSeats[RANDOM.nextInt(remainingSeats.length)]] = p;
 
 			}
 
 		}
 
-	}
-
-	// check if last passenger's seat is empty
-	public boolean isLastPassengerSeatEmpty() {
-
-		//To the best of my understanding, this is the one we actually care about
-		//Sure, we'll run everything else, but what we really really want is if the guy has his seat or not
-		//The entire purpose of the avaliableSeats list is just to pick a random seat from, it's useless by now
-		//All we have to do is return whether his seat is empty or not!
-
-		//System.out.println("Is last passenger empty: " + isFilled[availableSeats.get(0)] + " : Seat : " + availableSeats.get(0));
-
-		return !isFilled[orderOfBoarding.length - 1];
+		Integer[] seatsLeft = this.getSeatsRemaining();
+		//System.out.println(seatsLeft[0]);
+		return seatsLeft[0] == this.boardingList.get(99).seat;
 
 	}
 
-	// shuffle array
-	//Already done for us, I believe, I don't feel like messing with it
-	public static void shuffleArray(int[] ar) {
-		for (int i = ar.length - 1; i > 0; i--) {
-			int index = (int) (Math.random() * (i + 1));
-			// swap
-			int a = ar[index];
-			ar[index] = ar[i];
-			ar[i] = a;
+	public Integer[] getSeatsRemaining() {
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < 100; i++) {
+			if (airplaneSeating[i] == null)
+				list.add(i);
 		}
+		return list.toArray(new Integer[list.size()]);
 	}
+
+
+	class Passenger {
+
+		public int seat;
+
+		public Passenger(int seatNum) {
+			this.seat = seatNum;
+		}
+
+		public String toString() {
+			return Integer.toString(this.seat);
+		}
+
+		public boolean equals(Object other) {
+			return (other instanceof Passenger) && (this.seat == ((Passenger) other).seat);
+		}
+
+	}
+
 }
