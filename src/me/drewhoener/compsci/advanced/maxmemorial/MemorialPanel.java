@@ -44,10 +44,12 @@ public class MemorialPanel extends JPanel {
 
 		this.startButton = new JButton("Beginnings");
 		this.add(startButton, new GBConstraints(1, 2).fill(GridBagConstraints.HORIZONTAL).ipad(0, 100).weight(.2, 0).create());
+		startButton.addActionListener(e -> contentPanel.changeContent("Beginnings"));
 		//this.startButton.setBounds(20, 250, 120, 90);
 
 		this.combatantsButton = new JButton("Combatants");
 		this.add(combatantsButton, new GBConstraints(1, 3).fill(GridBagConstraints.HORIZONTAL).ipad(0, 100).weight(.2, .1).create());
+		startButton.addActionListener(e -> contentPanel.changeContent("Combatants"));
 		//this.combatantsButton.setBounds(20, 360, 120, 90);
 	}
 }

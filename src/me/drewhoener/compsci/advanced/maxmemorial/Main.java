@@ -7,10 +7,20 @@ import java.awt.event.KeyListener;
 
 public class Main {
 
+	private static Main instance;
+	JFrame mainFrame;
+
 	public static void main(String[] args) {
+
+		Main main = new Main();
+
+	}
+
+	public Main() {
+
 		SwingUtilities.invokeLater(() -> {
 			GraphicsDevice mainDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-			JFrame mainFrame = new JFrame();
+			mainFrame = new JFrame();
 			JPanel mainPanel = new MemorialPanel();
 			mainFrame.setContentPane(mainPanel);
 			mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,4 +51,7 @@ public class Main {
 		});
 	}
 
+	public static Main getInstance() {
+		return instance;
+	}
 }

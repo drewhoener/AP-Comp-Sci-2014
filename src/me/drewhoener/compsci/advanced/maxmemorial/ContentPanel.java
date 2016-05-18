@@ -10,12 +10,16 @@ import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class ContentPanel extends JPanel {
 	private static final String STATISTICS = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in imperdiet massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc mollis mi venenatis, tempus nunc eu, luctus tortor. Nunc ornare, felis ut faucibus malesuada, eros ligula facilisis dolor, finibus pretium dui ipsum in eros. Pellentesque eu dolor vitae ex aliquet fringilla quis venenatis ipsum. Integer nunc nunc, hendrerit ac est id, finibus consequat massa. Donec venenatis porttitor dolor eu congue. Nam vel sapien efficitur, dictum diam eget, rutrum mauris. Cras semper laoreet tellus. Curabitur quis condimentum arcu. Nunc nec nisl ut purus pellentesque congue sit amet a metus. Integer quis tempus nisl. Aliquam sit amet efficitur dolor. Curabitur sed egestas lectus. Pellentesque ut faucibus tortor, et pulvinar risus. Nulla dignissim pulvinar eros, nec congue ex convallis id.";
-	private static final String BEGINNINGS = "Beginnings here";
-	private static final String COMBATANTS = "Combatants here";
+	private List<String> beginnings = new ArrayList<>();
+	private List<String> combatants = new ArrayList<>();
 
 	private BufferedImage map;
 
@@ -33,6 +37,8 @@ public class ContentPanel extends JPanel {
 
 		try {
 			this.map = ImageIO.read(new File("res/Syrian_civil_war.png"));
+			readStrings(new File("res/beginnings.txt"), beginnings);
+			readStrings(new File("res/combatants.txt"), combatants);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,14 +69,44 @@ public class ContentPanel extends JPanel {
 
 	public void changeContent(String c) {
 		this.removeAll();
-		if (c.equals("Map"))
-			this.add(new JLabel(new ImageIcon(map)));
-		else if (c.equals("Statistics")) {
-			this.add(scrollPane, genericConstraints);
-			this.setString(STATISTICS);
+
+		switch (c) {
+
+			case "Map":
+				this.add(new JLabel(new ImageIcon(map)), genericConstraints);
+				break;
+			case "Statistics":
+				this.add(scrollPane, genericConstraints);
+				this.setString(STATISTICS);
+				break;
+			case "Beginnings":
+				this.add(scrollPane, genericConstraints);
+				setString("");
+				this.beginnings.forEach(this::appendString);
+				break;
+			case "Combatants":
+				this.add(scrollPane, genericConstraints);
+				setString("");
+				this.combatants.forEach(this::appendString);
+				break;
 		}
+
 		this.revalidate();
+		Main.getInstance().mainFrame.revalidate();
+		Main.getInstance().mainFrame.pack();
 		this.repaint();
+	}
+
+	public void readStrings(File path, List<String> list) throws FileNotFoundException {
+
+		Scanner scan = new Scanner(path);
+
+		while (scan.hasNextLine()) {
+			list.add(scan.nextLine());
+		}
+
+		scan.close();
+
 	}
 
 	public void appendString(String string) {
