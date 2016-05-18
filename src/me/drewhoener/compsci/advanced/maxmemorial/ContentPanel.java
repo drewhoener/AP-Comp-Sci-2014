@@ -92,8 +92,6 @@ public class ContentPanel extends JPanel {
 		}
 
 		this.revalidate();
-		Main.getInstance().mainFrame.revalidate();
-		Main.getInstance().mainFrame.pack();
 		this.repaint();
 	}
 
