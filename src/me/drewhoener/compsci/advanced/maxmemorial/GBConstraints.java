@@ -2,6 +2,10 @@ package me.drewhoener.compsci.advanced.maxmemorial;
 
 import java.awt.*;
 
+
+/**
+ * @author Drew
+ */
 public class GBConstraints {
 
 	private GridBagConstraints gridBagConstraints;
