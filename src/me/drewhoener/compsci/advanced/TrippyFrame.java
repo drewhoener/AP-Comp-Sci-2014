@@ -15,7 +15,7 @@ public class TrippyFrame {
 			t.setPreferredSize(new Dimension(500, 500));
 			frame.add(t);
 
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 			frame.pack();
 			frame.setVisible(true);
