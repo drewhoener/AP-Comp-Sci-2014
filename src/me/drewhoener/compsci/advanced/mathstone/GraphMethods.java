@@ -14,14 +14,20 @@ public class GraphMethods {
 		//0.4054651081081643
 		//System.out.println(findNatLog(100));
 		//System.out.println(bakhshaliMethod(1000000000));
-		/*DigitMethod method = new DigitMethod(11298);
-		System.out.println(method.getNextIncrement());
-		System.out.println(method.getNextIncrement());
-		System.out.println(method.getNextIncrement());
-		System.out.println(method.getNextIncrement());
-		System.out.println(method.getNextIncrement());
-		System.out.println(method.getNextIncrement());
-		System.out.println(figureOutDecimal(method.getNextIncrement(), 11298));*/
+		DigitMethod method = new DigitMethod(645);
+		try {
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+			System.out.println(method.getNextIncrement());
+		} catch (StackOverflowError e) {
+
+		}
 
 
 	}
@@ -86,11 +92,11 @@ public class GraphMethods {
 	 */
 	public static class DigitMethod extends IncrementableMethod {
 
-		Integer[] groups;
-		int memoryCounter = 0;
-		int memoryMultiplier = 1;
-		int workingRemainder = 0;
-		int workingNumber = 0;
+		private Integer[] groups;
+		private int memoryCounter = 0;
+		private int memoryMultiplier = 1;
+		private int workingRemainder = 0;
+		private int workingNumber = 0;
 
 		public double numToRoot;
 
@@ -122,14 +128,12 @@ public class GraphMethods {
 				this.getNumber();
 			}
 
-			System.out.println("Counter: " + memoryCounter);
+			//System.out.println("Counter: " + memoryCounter);
 
 			int numWorking = Integer.toString(this.workingNumber).length();
 			int numRoot = Double.toString(this.numToRoot).substring(0, Double.toString(this.numToRoot).length() - 2).length();
 
-			if (numWorking >= numRoot / 2 + 1)
-				return this.figureOutDecimal(this.workingNumber, this.numToRoot, /*2D * (1D / memoryCounter)*/ 4);
-			return this.workingNumber;
+			return this.figureOutDecimal(this.workingNumber, this.numToRoot);
 		}
 
 		public void getFirstNumber() {
@@ -145,8 +149,8 @@ public class GraphMethods {
 			}
 
 			this.workingRemainder = this.getNextGroup(this.memoryCounter) - ((int) Math.pow(this.workingNumber, 2));
-			System.out.println("Working: " + this.workingNumber);
-			System.out.println("Remainder: " + this.workingRemainder);
+			//System.out.println("Working: " + this.workingNumber);
+			//System.out.println("Remainder: " + this.workingRemainder);
 
 			this.memoryMultiplier *= 10;
 			this.memoryCounter++;
@@ -162,9 +166,9 @@ public class GraphMethods {
 
 			double multiplier = this.getClosestMultiplier(newWorking, this.workingRemainder);
 
-			System.out.println("Working: " + this.workingNumber);
-			System.out.println("Remainder: " + this.workingRemainder);
-			System.out.println("Multiplier: " + multiplier);
+			//System.out.println("Working: " + this.workingNumber);
+			//System.out.println("Remainder: " + this.workingRemainder);
+			//System.out.println("Multiplier: " + multiplier);
 
 			this.workingRemainder = this.workingRemainder - (int) ((newWorking + multiplier) * multiplier);
 			this.workingNumber += multiplier;
@@ -180,19 +184,24 @@ public class GraphMethods {
 			}
 		}
 
-		private double figureOutDecimal(double number, double supposedSquare, double threshold) {
+		private double figureOutDecimal(double number, double supposedSquare) throws StackOverflowError {
 
 			String numberStr = Double.toString(number);
 
-			System.out.println(Math.pow(Double.parseDouble(numberStr), 2) - supposedSquare);
-
-			if (Math.abs(Math.pow(Double.parseDouble(numberStr), 2) - supposedSquare) <= threshold) {
+			int actual = (int) bakhshaliMethod(supposedSquare);
+			//System.out.println(actual);
+			int testing = (int) number;
+			if (Integer.toString(testing).length() < Integer.toString(actual).length()) {
+				return Double.parseDouble(numberStr);
+			}
+			if (Integer.toString(testing).length() == Integer.toString(actual).length()) {
 				return Double.parseDouble(numberStr);
 			}
 
 			String compareStr = numberStr;
 			if (numberStr.contains(".")) {
-				String[] parts = compareStr.split(Pattern.quote("."));
+				String[] parts;
+				parts = compareStr.split(Pattern.quote("."));
 				StringBuilder builder = null;
 				if (parts[0].length() > 1) {
 					builder = new StringBuilder(parts[0].substring(0, parts[0].length() - 1));
@@ -206,11 +215,14 @@ public class GraphMethods {
 
 			}
 
-			if (Math.abs(Math.pow(Double.parseDouble(compareStr), 2) - supposedSquare) < threshold) {
-				return Double.parseDouble(compareStr);
-			}
+			//System.out.println("Compare String: " + compareStr);
+			//testing = (int)Double.parseDouble(compareStr);
 
-			return figureOutDecimal(Double.parseDouble(compareStr), supposedSquare, threshold);
+			//if (Integer.toString(testing).length() == Integer.toString(actual).length()) {
+			//return Double.parseDouble(numberStr);
+			//}
+
+			return figureOutDecimal(Double.parseDouble(compareStr), supposedSquare);
 		}
 
 		private double getClosestMultiplier(int startingCloseNum, int toBeLessThan) {
@@ -230,38 +242,6 @@ public class GraphMethods {
 
 
 	}
-
-	public static double figureOutDecimal(double number, int supposedSquare) {
-		String numberStr = Double.toString(number);
-		System.out.println(numberStr);
-
-		if (Math.abs(Math.pow(Double.parseDouble(numberStr), 2) - supposedSquare) <= 1) {
-			return Double.parseDouble(numberStr);
-		}
-
-		String compareStr = numberStr;
-		if (numberStr.contains(".")) {
-			String[] parts = compareStr.split(Pattern.quote("."));
-			StringBuilder builder = null;
-			if (parts[0].length() > 1) {
-				builder = new StringBuilder(parts[0].substring(0, parts[0].length() - 1));
-				builder.append(".").append(parts[0].substring(parts[0].length() - 1)).append(parts[1]);
-			}
-			if (builder != null)
-				compareStr = builder.toString();
-
-		} else {
-			compareStr = numberStr + ".0";
-
-		}
-
-		if (Math.abs(Math.pow(Double.parseDouble(compareStr), 2) - supposedSquare) < 1) {
-			return Double.parseDouble(compareStr);
-		}
-
-		return figureOutDecimal(Double.parseDouble(compareStr), supposedSquare);
-	}
-
 
 	/**
 	 * n = the closest perfect square to s

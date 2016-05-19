@@ -9,6 +9,7 @@ public class GraphMain {
 	GraphPanel panel1;
 	ButtonPanel panel2;
 	JFrame frame = new JFrame("Graph Visualizer");
+	Timer timer;
 
 	public static GraphMain instance = null;
 
@@ -41,6 +42,9 @@ public class GraphMain {
 			this.panel2.requestFocusInWindow();
 
 		});
+
+		this.timer = new Timer(50, e -> this.getPanel1().repaint());
+		this.timer.start();
 
 	}
 

@@ -23,7 +23,6 @@ public class ButtonPanel extends JPanel {
 
 	private JRadioButton babylonianMethod = new JRadioButton("Babylonian Method");
 	private JRadioButton digitMethod = new JRadioButton("Digit by Digit Method");
-	private JRadioButton bakhshaliMethod = new JRadioButton("Bakhshali Method");
 
 	private JButton startButton = new JButton("Start Simulation");
 
@@ -176,7 +175,6 @@ public class ButtonPanel extends JPanel {
 
 		this.methodGroup.add(this.babylonianMethod);
 		this.methodGroup.add(this.digitMethod);
-		this.methodGroup.add(this.bakhshaliMethod);
 
 		this.babylonianMethod.addChangeListener(l -> {
 			if (this.babylonianMethod.isSelected()) {
@@ -190,7 +188,6 @@ public class ButtonPanel extends JPanel {
 
 		this.add(this.babylonianMethod, new GBConstraints(0, 4).weight(.1, 0).fill(GridBagConstraints.HORIZONTAL).create());
 		this.add(this.digitMethod, new GBConstraints(0, 5).weight(.1, 0).fill(GridBagConstraints.HORIZONTAL).create());
-		this.add(this.bakhshaliMethod, new GBConstraints(0, 6).weight(.1, 0).fill(GridBagConstraints.HORIZONTAL).create());
 
 		this.add(Box.createVerticalGlue(), new GBConstraints(0, 7).weight(.1, .1).fill(GridBagConstraints.HORIZONTAL).create());
 
@@ -201,6 +198,10 @@ public class ButtonPanel extends JPanel {
 		this.add(this.startButton, new GBConstraints(0, 10).weight(.1, 0).ipad(0, 40).fill(GridBagConstraints.HORIZONTAL).anchor(GridBagConstraints.PAGE_END).insets(new Insets(0, 4, 0, 4)).create());
 		this.add(this.progressionButton, new GBConstraints(0, 11).weight(.1, 0).fill(GridBagConstraints.HORIZONTAL).anchor(GridBagConstraints.PAGE_END).create());
 
+		this.progressionButton.addActionListener(e -> {
+			GraphMain.instance.getPanel1().drawNextPoint();
+		});
+
 		this.resetButton.addActionListener(e -> {
 			this.inputArea.setText("");
 			this.secondNumberArea.setText("");
@@ -208,7 +209,6 @@ public class ButtonPanel extends JPanel {
 			this.startButton.setEnabled(true);
 			this.babylonianMethod.setEnabled(true);
 			this.digitMethod.setEnabled(true);
-			this.bakhshaliMethod.setEnabled(true);
 			this.startButton.setEnabled(false);
 			this.progressionButton.setEnabled(false);
 			this.main.getPanel1().resetMethods();
@@ -224,16 +224,13 @@ public class ButtonPanel extends JPanel {
 		GraphMethods.IncrementableMethod method = null;
 		if (this.babylonianMethod.isSelected())
 			method = new GraphMethods.BabylonianMethod(Integer.parseInt(this.inputArea.getText()), Integer.parseInt(this.secondNumberArea.getText()));
-		else if (this.digitMethod.isSelected()) ;
-			//method = GraphPanel.CalculationMethods.DIGIT;
-		else if (this.bakhshaliMethod.isSelected()) ;
-			//method = GraphPanel.CalculationMethods.BAKHSHALI;
+		else if (this.digitMethod.isSelected())
+			method = new GraphMethods.DigitMethod(Double.parseDouble(this.inputArea.getText()));
 		else
 			JOptionPane.showMessageDialog(this.main.getFrame(), "Welp...Bet you didn't see this coming\nIn fact this message should never appear!", "Error: Ya Done Screwed Up", JOptionPane.ERROR_MESSAGE);
 
 		this.babylonianMethod.setEnabled(false);
 		this.digitMethod.setEnabled(false);
-		this.bakhshaliMethod.setEnabled(false);
 
 		this.progressionButton.setEnabled(true);
 
