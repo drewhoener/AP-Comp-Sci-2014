@@ -12,14 +12,11 @@ public class GraphPanel extends JPanel {
 	public static final int HEIGHT = 800;
 	public static final int WIDTH = 950;
 
-	public static int WORKING_WIDTH = WIDTH - 150;
-	public static int WORKING_HEIGHT = HEIGHT - 150;
+	private static int WORKING_WIDTH = WIDTH - 150;
+	private static int WORKING_HEIGHT = HEIGHT - 150;
 
-	public static final int GRAPHX = 15;
-	public static int GRAPHY = 10;
-
-	public double maxY = Integer.MIN_VALUE;
-	public double minY = Integer.MAX_VALUE;
+	private double maxY = Integer.MIN_VALUE;
+	private double minY = Integer.MAX_VALUE;
 
 	static DecimalFormat numberFormat = new DecimalFormat("#.000");
 
@@ -105,7 +102,7 @@ public class GraphPanel extends JPanel {
 
 	}
 
-	public void recalculateAllPoints() {
+	private void recalculateAllPoints() {
 
 		for (Point.Double p : this.pointList) {
 			if (p.getY() > this.maxY) {
@@ -115,13 +112,13 @@ public class GraphPanel extends JPanel {
 				minY = p.getY();
 			}
 		}
-
+		System.out.println("------------------------------------------------------");
 		for (Point.Double p : this.pointList)
 			System.out.println("Point: " + p.toString() + " | " + this.getYValue(p.getY()));
 
 	}
 
-	public double getYValue(double pointY) {
+	private double getYValue(double pointY) {
 
 		double range = maxY - minY;
 		double percentage = ((pointY - minY) / range);
@@ -141,12 +138,6 @@ public class GraphPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		this.drawRedraw(((Graphics2D) g));
-	}
-
-	enum CalculationMethods {
-		BABYLONIAN,
-		DIGIT,
-		BAKHSHALI;
 	}
 
 }

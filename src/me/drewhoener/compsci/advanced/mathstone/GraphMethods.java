@@ -215,13 +215,6 @@ public class GraphMethods {
 
 			}
 
-			//System.out.println("Compare String: " + compareStr);
-			//testing = (int)Double.parseDouble(compareStr);
-
-			//if (Integer.toString(testing).length() == Integer.toString(actual).length()) {
-			//return Double.parseDouble(numberStr);
-			//}
-
 			return figureOutDecimal(Double.parseDouble(compareStr), supposedSquare);
 		}
 

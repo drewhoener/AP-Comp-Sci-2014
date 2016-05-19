@@ -5,14 +5,11 @@ import java.awt.*;
 
 public class GraphMain {
 
-
-	GraphPanel panel1;
-	ButtonPanel panel2;
-	JFrame frame = new JFrame("Graph Visualizer");
-	Timer timer;
+	private GraphPanel panel1;
+	private ButtonPanel panel2;
+	private JFrame frame = new JFrame("Graph Visualizer");
 
 	public static GraphMain instance = null;
-
 
 	public static void main(String[] args) {
 
@@ -43,17 +40,13 @@ public class GraphMain {
 
 		});
 
-		this.timer = new Timer(50, e -> this.getPanel1().repaint());
-		this.timer.start();
+		Timer timer = new Timer(50, e -> this.getPanel1().repaint());
+		timer.start();
 
 	}
 
 	public GraphPanel getPanel1() {
 		return panel1;
-	}
-
-	public ButtonPanel getPanel2() {
-		return panel2;
 	}
 
 	public JFrame getFrame() {

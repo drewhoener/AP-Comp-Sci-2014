@@ -10,7 +10,7 @@ import java.util.Random;
 public class ButtonPanel extends JPanel {
 
 	private static Font areaFont = new Font("Ariel", Font.TRUETYPE_FONT, 20);
-	private static Font dontUseFont = new Font("Ariel", Font.TRUETYPE_FONT, 20);
+	private static Font dontUseFont = new Font("Ariel", Font.TRUETYPE_FONT, 15);
 
 	public static final Random rand = new Random();
 	private ButtonGroup methodGroup = new ButtonGroup();
@@ -31,18 +31,17 @@ public class ButtonPanel extends JPanel {
 	private JLabel usedEquation = new JLabel("");
 	private JLabel explanation = new JLabel("");
 
-	JLabel inputLabel = new JLabel("Input Number: ");
-	JLabel secondaryLabel = new JLabel("Secondary Number: ");
+	private JLabel inputLabel = new JLabel("Input Number: ");
+	private JLabel secondaryLabel = new JLabel("Secondary Number: ");
 
 	public static final int WIDTH = 250;
 	public static final int HEIGHT = 100;
-
-	private GridBagLayout layout = new GridBagLayout();
 
 	private GraphMain main;
 
 	public ButtonPanel(GraphMain main) {
 		super();
+		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		this.main = main;
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -78,7 +77,7 @@ public class ButtonPanel extends JPanel {
 
 			this.startSimulation();
 
-			this.originalNumber.setText("Getting Root For: " + this.inputArea.getText());
+			this.originalNumber.setText("Getting Root For: \n" + this.inputArea.getText());
 			this.inputArea.setText("");
 			this.secondNumberArea.setText("");
 
@@ -87,16 +86,12 @@ public class ButtonPanel extends JPanel {
 		this.secondNumberArea.setFont(areaFont);
 		this.secondNumberArea.setAutoscrolls(true);
 		this.secondNumberArea.setBorder(new EtchedBorder(Color.BLACK, Color.GRAY));
-		this.secondNumberArea.addActionListener(e -> {
-			this.startButton.doClick();
-		});
+		this.secondNumberArea.addActionListener(e -> this.startButton.doClick());
 
 		this.inputArea.setFont(areaFont);
 		this.inputArea.setAutoscrolls(true);
 		this.inputArea.setBorder(new EtchedBorder(Color.BLACK, Color.GRAY));
-		this.inputArea.addActionListener(e -> {
-			this.startButton.doClick();
-		});
+		this.inputArea.addActionListener(e -> this.startButton.doClick());
 		this.inputArea.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -179,6 +174,7 @@ public class ButtonPanel extends JPanel {
 		this.babylonianMethod.addChangeListener(l -> {
 			if (this.babylonianMethod.isSelected()) {
 				this.secondNumberArea.setVisible(true);
+				this.revalidate();
 			} else {
 				this.secondNumberArea.setVisible(false);
 			}
@@ -198,9 +194,7 @@ public class ButtonPanel extends JPanel {
 		this.add(this.startButton, new GBConstraints(0, 10).weight(.1, 0).ipad(0, 40).fill(GridBagConstraints.HORIZONTAL).anchor(GridBagConstraints.PAGE_END).insets(new Insets(0, 4, 0, 4)).create());
 		this.add(this.progressionButton, new GBConstraints(0, 11).weight(.1, 0).fill(GridBagConstraints.HORIZONTAL).anchor(GridBagConstraints.PAGE_END).create());
 
-		this.progressionButton.addActionListener(e -> {
-			GraphMain.instance.getPanel1().drawNextPoint();
-		});
+		this.progressionButton.addActionListener(e -> GraphMain.instance.getPanel1().drawNextPoint());
 
 		this.resetButton.addActionListener(e -> {
 			this.inputArea.setText("");
@@ -219,7 +213,7 @@ public class ButtonPanel extends JPanel {
 		this.progressionButton.setEnabled(false);
 	}
 
-	public void startSimulation() {
+	private void startSimulation() {
 
 		GraphMethods.IncrementableMethod method = null;
 		if (this.babylonianMethod.isSelected())
