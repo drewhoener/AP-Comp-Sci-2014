@@ -10,7 +10,7 @@ import java.util.Random;
 public class ButtonPanel extends JPanel {
 
 	private static Font areaFont = new Font("Ariel", Font.TRUETYPE_FONT, 20);
-	private static Font dontUseFont = new Font("Comic Sans MS", Font.TRUETYPE_FONT, 20);
+	private static Font dontUseFont = new Font("Ariel", Font.TRUETYPE_FONT, 20);
 
 	public static final Random rand = new Random();
 	private ButtonGroup methodGroup = new ButtonGroup();
