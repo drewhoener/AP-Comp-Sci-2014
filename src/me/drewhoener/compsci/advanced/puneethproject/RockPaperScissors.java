@@ -5,23 +5,23 @@ import java.util.Scanner;
 
 public class RockPaperScissors {
 
-	private int playerScore = 0;
-	private int computerScore = 0;
-	private int roundCounter = 0;
 	private Random rand = new Random();
 
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		RockPaperScissors rps = new RockPaperScissors();
 
-
 	}
 
-	public RockPaperScissors() {
+	private RockPaperScissors() {
 
 		Scanner scanner = new Scanner(System.in);
 
+		int playerScore = 0;
+		int computerScore = 0;
+		int roundCounter = 0;
 		while (roundCounter < 5) {
 			roundCounter++;
 			System.out.println("------------------------------------------------------");
@@ -87,7 +87,7 @@ public class RockPaperScissors {
 
 	}
 
-	public String choiceToString(int i) {
+	private String choiceToString(int i) {
 		switch (i) {
 			case 1:
 				return "Rock";
